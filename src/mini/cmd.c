@@ -6,11 +6,17 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 10:43:16 by cattouma          #+#    #+#             */
-/*   Updated: 2016/03/16 08:37:45 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/06/02 20:11:02 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+/* t_dict			*ret_bin_hash() */
+/* { */
+/* 	static t_dict	bin_hash; */
+/* 	return (&bin_bash); */
+/* } */
 
 static int		loop_paths(t_cmd *cmd, t_dict *env)
 {

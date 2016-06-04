@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/02 10:32:33 by cattouma          #+#    #+#             */
-/*   Updated: 2016/03/21 14:28:07 by cattouma         ###   ########.fr       */
+/*   Created: 2016/06/02 19:34:08 by cattouma          #+#    #+#             */
+/*   Updated: 2016/06/02 19:37:05 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "cd.h"
 
 t_dict	*envcpy(char **env)
 {
-	t_dict	*envdict;
-	int		start;
-	char	*key;
-	char	*value;
-	int		i;
+	t_dict		*envdict;
+	int			start;
+	t_keyval	kv;
+	int			i;
 
 	envdict = dict_create();
 	if (!envdict)
@@ -27,12 +27,12 @@ t_dict	*envcpy(char **env)
 	while (env[i])
 	{
 		start = ft_strlenchr(env[i], '=');
-		key = ft_strndup(env[i], start);
-		value = ft_strdup(env[i] + start + 1);
-		dict_insert(envdict, key, value);
+		kv.key = ft_strndup(env[i], start);
+		kv.value = ft_strdup(env[i] + start + 1);
+		dict_insert(envdict, kv.key, kv.value);
 		i++;
-		free(key);
-		free(value);
+		free(kv.key);
+		free(kv.value);
 	}
 	return (envdict);
 }
