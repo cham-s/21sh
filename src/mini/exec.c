@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 10:32:41 by cattouma          #+#    #+#             */
-/*   Updated: 2016/06/15 09:16:27 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/06/15 10:28:41 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void			display_prompt(t_dict *dictenv)
 	ft_putstr("\033[0m");
 }
 
-void			interpret_command(t_dict *dictenv, t_cmd *cmd)
+void			interpret_command(t_dict *dictenv, t_cmd *cmd,t_dict *dicts[DICT_COUNT] )
 {
 	char	*line;
 	char	**big_line;
@@ -96,7 +96,7 @@ void			interpret_command(t_dict *dictenv, t_cmd *cmd)
 		i = 0;
 		while (big_line[i])
 		{
-			split_line = split_parse(big_line[i], dictenv);
+			split_line = split_parse(big_line[i], dictenv, dicts);
 			if (initcmd(dictenv, cmd, split_line) != -1)
 				launch_exec(cmd, dictenv, env);
 			ft_delsplit(split_line);

@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 10:33:18 by cattouma          #+#    #+#             */
-/*   Updated: 2016/06/15 09:16:49 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/06/15 10:33:56 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static size_t	ft_strlenchar(const char *s)
 	return (i);
 }
 
-char			*replace_symbol(char *s, t_dict *env)
+char			*replace_symbol(char *s, t_dict *env, t_dict *dicts[DICT_COUNT])
 {
 	char	*key;
 	int		slash_pos;
@@ -57,19 +57,19 @@ char			*replace_symbol(char *s, t_dict *env)
 	{
 		if (slash_pos == 2 || slash_pos == 1)
 		{
-			if (replace_s(&s, env, &key, slash_pos) == -1)
+			if (replace_s(&s, env, &key, slash_pos, dicts) == -1)
 				return (s);
 		}
 		else
 		{
-			if (replace_all(&s, env, &key) == -1)
+			if (replace_all(&s, env, &key, dicts) == -1)
 				return (s);
 		}
 	}
 	return (s);
 }
 
-char			**split_parse(char const *s, t_dict *env)
+char			**split_parse(char const *s, t_dict *env, t_dict *dicts[DICT_COUNT] )
 {
 	char	**new;
 	size_t	len;
@@ -90,7 +90,7 @@ char			**split_parse(char const *s, t_dict *env)
 			s++;
 		strlen = ft_strlenchar(s);
 		new[i] = ft_strndup(s, strlen);
-		new[i] = replace_symbol(new[i], env);
+		new[i] = replace_symbol(new[i], env, dicts);
 		s += strlen;
 		i++;
 	}
