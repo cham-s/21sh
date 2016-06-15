@@ -6,11 +6,11 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 19:34:08 by cattouma          #+#    #+#             */
-/*   Updated: 2016/06/02 19:37:05 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/06/15 09:16:07 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "21sh.h"
 #include "cd.h"
 
 t_dict	*envcpy(char **env)

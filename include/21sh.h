@@ -6,12 +6,12 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/16 09:37:41 by cattouma          #+#    #+#             */
-/*   Updated: 2016/03/21 18:43:47 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/06/15 09:23:00 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef VEUSH_H
+# define VEUSH_H
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <signal.h>

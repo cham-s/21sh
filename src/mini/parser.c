@@ -6,11 +6,11 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/16 08:54:45 by cattouma          #+#    #+#             */
-/*   Updated: 2016/03/16 08:55:33 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/06/15 09:17:27 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "21sh.h"
 
 int		is_tokenchr(char c)
 {

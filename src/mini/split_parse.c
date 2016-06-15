@@ -6,11 +6,11 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 10:33:18 by cattouma          #+#    #+#             */
-/*   Updated: 2016/03/16 08:56:34 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/06/15 09:16:49 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "21sh.h"
 
 static size_t	to_allocate(const char *s)
 {

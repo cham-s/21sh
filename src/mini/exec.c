@@ -6,11 +6,11 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 10:32:41 by cattouma          #+#    #+#             */
-/*   Updated: 2016/03/16 08:49:28 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/06/15 09:16:27 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "21sh.h"
 #include "cd.h"
 
 static int		check_bltn(t_cmd *cmd, t_dict *dictenv)

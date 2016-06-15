@@ -6,11 +6,11 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/16 08:24:07 by cattouma          #+#    #+#             */
-/*   Updated: 2016/03/16 09:24:34 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/06/15 09:12:46 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "21sh.h"
 
 static void			env_usage(char c)
 {

@@ -6,11 +6,11 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/16 08:42:52 by cattouma          #+#    #+#             */
-/*   Updated: 2016/03/21 14:27:09 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/06/15 09:16:16 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "21sh.h"
 
 int		ft_isnum(char c)
 {

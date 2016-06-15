@@ -6,16 +6,16 @@
 #    By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/02 16:30:48 by cattouma          #+#    #+#              #
-#    Updated: 2016/06/02 16:42:16 by cattouma         ###   ########.fr        #
+#    Updated: 2016/06/15 09:21:34 by cattouma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME 		= 21sh 
+NAME 		= 21sh
 CC 			= clang
 LIB 		= libft/libft.a
 FLAGS 		= -Wall -Werror -Wextra
 INCLUDES 	= -I include -I libft/includes
-INC			= include/minishell.h include/cd.h include/dict.h
+INC			= include/21sh.h include/cd.h include/dict.h
 OBJDIR		= obj
 OBJS 		= $(OBJDIR)/main.o\
 			  $(OBJDIR)/utils.o\
