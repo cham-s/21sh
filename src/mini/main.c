@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "21sh.h"
+// printf
 
 char	*g_prog_name;
 
@@ -18,16 +19,19 @@ int		main(int ac, char **av, char **env)
 {
 	t_cmd	cmd;
 	t_dict	*envc;
-	t_dict	*dicts[DICT_COUNT]; /* contains all three necessary dict */
+	t_dict	**dicts; /* contains all three necessary dict */
 
-	(void)ac;
-	(void)av;
+	dicts = (t_dict **)malloc(sizeof(t_dict) * DICT_COUNT);
 	dicts[ENV] = NULL;
 	dicts[TOKENS] = NULL;
 	dicts[BIN] = NULL;
+	(void)ac;
+	(void)av;
 	signal(SIGINT, sig_handler);
 	envc = envcpy(env);
 	init_tokens(dicts[TOKENS]);
+	printf("%s\n", dict_search(dicts[TOKENS], "~"));
+	exit(3);
 	interpret_command(envc, &cmd, dicts);
 	dict_destroy(dicts[TOKENS]);
 	dict_destroy(envc);

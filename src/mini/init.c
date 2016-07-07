@@ -11,12 +11,12 @@
 /* ************************************************************************** */
 
 #include "21sh.h"
+// printf
+#include <stdio.h>
 
 int		init_tokens(t_dict *tokens)
 {
 	tokens = dict_create();
-	if (!tokens)
-		return (-1);
 	dict_insert(tokens, "~", "HOME");
 	dict_insert(tokens, "-", "OLDPWD");
 	dict_insert(tokens, "~+", "PWD");

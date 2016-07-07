@@ -13,6 +13,8 @@
 #ifndef DICT_H
 # define DICT_H
 # include "libft.h"
+//
+#include <stdio.h>
 # define INIT_SIZE			30
 # define MULTIPLAYER		97
 # define GROWTH_FACTOR		2
