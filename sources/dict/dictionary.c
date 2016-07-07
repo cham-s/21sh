@@ -66,8 +66,6 @@ unsigned long	hash_function(const char *s)
 	unsigned const char	*ts;
 	unsigned long		h;
 
-	printf("%s\n", s);
-	exit(3);
 	h = 0;
 	ts = (unsigned const char *)s;
 	while (*ts)

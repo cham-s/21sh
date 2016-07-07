@@ -36,8 +36,6 @@ char	*dict_search(t_dict *d, const char *key)
 {
 	t_elt *e;
 
-	printf("%s\n", key);
-	exit(3);
 	e = d->table[hash_function(key) % d->size];
 	while (e)
 	{

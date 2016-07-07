@@ -6,11 +6,11 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/28 11:08:58 by cattouma          #+#    #+#             */
-/*   Updated: 2016/06/15 09:16:58 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/03/21 14:53:45 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "21sh.h"
+#include "minishell.h"
 
 char	*join_with_chr(char *var, char *value, char c)
 {

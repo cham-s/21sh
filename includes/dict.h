@@ -6,15 +6,13 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/16 09:35:08 by cattouma          #+#    #+#             */
-/*   Updated: 2016/06/02 19:23:43 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/03/16 09:41:32 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DICT_H
 # define DICT_H
 # include "libft.h"
-//
-#include <stdio.h>
 # define INIT_SIZE			30
 # define MULTIPLAYER		97
 # define GROWTH_FACTOR		2
@@ -33,12 +31,6 @@ typedef struct		s_dict
 	int				n;
 	t_elt			**table;
 }					t_dict;
-
-typedef struct		s_keyval
-{
-	char			*key;
-	char			*value;
-}					t_keyval;
 
 unsigned long		hash_function(const char *s);
 void				grow(t_dict *d);

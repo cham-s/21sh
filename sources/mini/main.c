@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/15 09:16:35 by cattouma          #+#    #+#             */
-/*   Updated: 2016/06/15 10:28:14 by cattouma         ###   ########.fr       */
+/*   Created: 2016/03/16 08:52:33 by cattouma          #+#    #+#             */
+/*   Updated: 2016/07/08 01:28:05 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "21sh.h"
-// printf
+#include "minishell.h"
+//
+#include <stdio.h>
 
+t_dict	*g_tokens;
 char	*g_prog_name;
 
 int		main(int ac, char **av, char **env)
@@ -27,11 +29,12 @@ int		main(int ac, char **av, char **env)
 	dicts[BIN] = NULL;
 	(void)ac;
 	(void)av;
+	init_tokens(dicts[TOKENS]);
+	//
+	exit(3);
 	signal(SIGINT, sig_handler);
 	envc = envcpy(env);
 	init_tokens(dicts[TOKENS]);
-	printf("%s\n", dict_search(dicts[TOKENS], "~"));
-	exit(3);
 	interpret_command(envc, &cmd, dicts);
 	dict_destroy(dicts[TOKENS]);
 	dict_destroy(envc);

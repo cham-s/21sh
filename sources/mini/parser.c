@@ -6,11 +6,11 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/16 08:54:45 by cattouma          #+#    #+#             */
-/*   Updated: 2016/06/15 10:34:55 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/03/16 08:55:33 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "21sh.h"
+#include "minishell.h"
 
 int		is_tokenchr(char c)
 {
@@ -19,15 +19,15 @@ int		is_tokenchr(char c)
 	return (0);
 }
 
-int		replace_s(char **s, t_dict *env, char **key, int s_pos, t_dict *dicts[DICT_COUNT])
+int		replace_s(char **s, t_dict *env, char **key, int s_pos)
 {
 	char	*tmp;
 	char	*envar;
 
-	envar = dict_search(env, dict_search(dicts[TOKENS], *key));
+	envar = dict_search(env, dict_search(g_tokens, *key));
 	if (!envar)
 	{
-		env_missing(dict_search(dicts[TOKENS], *key));
+		env_missing(dict_search(g_tokens, *key));
 		return (-1);
 	}
 	tmp = *s;
@@ -37,15 +37,15 @@ int		replace_s(char **s, t_dict *env, char **key, int s_pos, t_dict *dicts[DICT_
 	return (0);
 }
 
-int		replace_all(char **s, t_dict *env, char **key, t_dict *dicts[DICT_COUNT])
+int		replace_all(char **s, t_dict *env, char **key)
 {
 	char	*tmp;
 	char	*envar;
 
-	envar = dict_search(env, dict_search(dicts[TOKENS], *key));
+	envar = dict_search(env, dict_search(g_tokens, *key));
 	if (!envar)
 	{
-		env_missing(dict_search(dicts[TOKENS], *key));
+		env_missing(dict_search(g_tokens, *key));
 		return (-1);
 	}
 	tmp = *s;

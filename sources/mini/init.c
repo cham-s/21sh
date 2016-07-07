@@ -6,13 +6,11 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/05 09:57:10 by cattouma          #+#    #+#             */
-/*   Updated: 2016/06/15 09:44:00 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/07/08 01:26:07 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "21sh.h"
-// printf
-#include <stdio.h>
+#include "minishell.h"
 
 int		init_tokens(t_dict *tokens)
 {
@@ -21,6 +19,8 @@ int		init_tokens(t_dict *tokens)
 	dict_insert(tokens, "-", "OLDPWD");
 	dict_insert(tokens, "~+", "PWD");
 	dict_insert(tokens, "~-", "OLDPWD");
+	// printf()
+	printf("%s\n", dict_search(tokens, "~"));
 	return (0);
 }
 

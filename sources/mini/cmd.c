@@ -6,11 +6,11 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 10:43:16 by cattouma          #+#    #+#             */
-/*   Updated: 2016/06/15 10:12:49 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/03/16 08:37:45 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "21sh.h"
+#include "minishell.h"
 
 static int		loop_paths(t_cmd *cmd, t_dict *env)
 {

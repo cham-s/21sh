@@ -6,14 +6,14 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/16 09:34:27 by cattouma          #+#    #+#             */
-/*   Updated: 2016/06/15 09:23:39 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/03/21 17:01:39 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CD_H
 # define CD_H
 # include <sys/stat.h>
-# include "21sh.h"
+# include "minishell.h"
 # include "dict.h"
 # define CD_OPT			"LP"
 # define OPTIN(a, b)	ft_strchr(a, b)
