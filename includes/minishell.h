@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/16 09:37:41 by cattouma          #+#    #+#             */
-/*   Updated: 2016/03/21 18:43:47 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/07/08 02:08:44 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@
 # include "libft.h"
 # include "dict.h"
 # define S_POSITION(s) (ft_strchr(s, '/') - s)
+
+# define DICT_COUNT	3
+# define ENV		0
+# define TOKENS		1
+# define BIN		2
 
 typedef struct		s_cmd
 {
@@ -40,7 +45,7 @@ int					ft_setenv(const char *k, const char *v, t_dict *e, int ov);
 int					ft_unsetenv(const char *key, t_dict *env);
 int					is_tokenchr(char c);
 char				*is_tokenstr(char *s);
-int					init_tokens(void);
+int					init_tokens(t_dict *tokens);
 void				env_missing(char *envkey);
 int					is_numeric(char *s);
 int					start_env(t_dict *env, t_cmd *cmd);
