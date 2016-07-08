@@ -1,4 +1,4 @@
-NAME = minishell
+NAME = 21sh 
 CC = clang
 LIB = libft/libft.a
 FLAGS = -g -Wall -Werror -Wextra

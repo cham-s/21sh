@@ -12,15 +12,13 @@
 
 #include "minishell.h"
 
-int		init_tokens(t_dict *tokens)
+int		init_tokens(t_dict **tokens)
 {
-	tokens = dict_create();
-	dict_insert(tokens, "~", "HOME");
-	dict_insert(tokens, "-", "OLDPWD");
-	dict_insert(tokens, "~+", "PWD");
-	dict_insert(tokens, "~-", "OLDPWD");
-	// printf()
-	printf("%s\n", dict_search(tokens, "~"));
+	*tokens = dict_create();
+	dict_insert(*tokens, "~", "HOME");
+	dict_insert(*tokens, "-", "OLDPWD");
+	dict_insert(*tokens, "~+", "PWD");
+	dict_insert(*tokens, "~-", "OLDPWD");
 	return (0);
 }
 

@@ -19,15 +19,17 @@ int		is_tokenchr(char c)
 	return (0);
 }
 
-int		replace_s(char **s, t_dict *env, char **key, int s_pos)
+int		replace_s(char **s, t_dict **dicts, char **key, int s_pos)
 {
 	char	*tmp;
 	char	*envar;
+	char	*token_key;
 
-	envar = dict_search(env, dict_search(g_tokens, *key));
+	token_key = dict_search(dicts[TOKENS], *key);
+	envar = dict_search(dicts[ENV], token_key);
 	if (!envar)
 	{
-		env_missing(dict_search(g_tokens, *key));
+		env_missing(token_key);
 		return (-1);
 	}
 	tmp = *s;
@@ -37,15 +39,17 @@ int		replace_s(char **s, t_dict *env, char **key, int s_pos)
 	return (0);
 }
 
-int		replace_all(char **s, t_dict *env, char **key)
+int		replace_all(char **s, t_dict **dicts, char **key)
 {
 	char	*tmp;
 	char	*envar;
+	char	*token_key;
 
-	envar = dict_search(env, dict_search(g_tokens, *key));
+	token_key = dict_search(dicts[TOKENS], *key);
+	envar = dict_search(dicts[ENV], token_key);
 	if (!envar)
 	{
-		env_missing(dict_search(g_tokens, *key));
+		env_missing(token_key);
 		return (-1);
 	}
 	tmp = *s;
@@ -55,8 +59,10 @@ int		replace_all(char **s, t_dict *env, char **key)
 	return (0);
 }
 
-char	*is_tokenstr(char *s)
+char	*is_tokenstr(const char *s)
 {
+	if (!s)
+		return (NULL);
 	if (!s[1])
 	{
 		if (is_tokenchr(s[0]))

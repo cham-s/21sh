@@ -11,33 +11,21 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
-//
-#include <stdio.h>
 
-t_dict	*g_tokens;
 char	*g_prog_name;
 
 int		main(int ac, char **av, char **env)
 {
 	t_cmd	cmd;
-	t_dict	*envc;
-	t_dict	**dicts; /* contains all three necessary dict */
+	t_dict	*dicts[3]; /* contains all three necessary dict  env tokens binaries */
 
-	dicts = (t_dict **)malloc(sizeof(t_dict) * DICT_COUNT);
-	dicts[ENV] = NULL;
-	dicts[TOKENS] = NULL;
-	dicts[BIN] = NULL;
 	(void)ac;
 	(void)av;
-	init_tokens(dicts[TOKENS]);
+	init_tokens(&dicts[TOKENS]);
 	//
-	exit(3);
 	signal(SIGINT, sig_handler);
-	envc = envcpy(env);
-	init_tokens(dicts[TOKENS]);
-	interpret_command(envc, &cmd, dicts);
-	dict_destroy(dicts[TOKENS]);
-	dict_destroy(envc);
+	dicts[ENV] = envcpy(env);
+	interpret_command(dicts, &cmd);
 	cmd_free(&cmd);
 	return (0);
 }

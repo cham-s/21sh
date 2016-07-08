@@ -77,31 +77,28 @@ void			display_prompt(t_dict *dictenv)
 	ft_putstr("\033[0m");
 }
 
-void			interpret_command(t_dict *dictenv, t_cmd *cmd)
+void			interpret_command(t_dict **dicts, t_cmd *cmd)
 {
-	char	*line;
-	char	**big_line;
-	char	**split_line;
-	char	**env;
-	int		i;
+	t_line_info	li;
+	char		**env;
+	int			i;
 
-	i = 0;
 	while (1)
 	{
-		display_prompt(dictenv);
-		if (get_next_line(0, &line) == 0)
-			exit(0);
-		env = dict_to_tab(dictenv);
-		big_line = ft_strsplit(line, ';');
+		display_prompt(dicts[ENV]);
+		if (get_next_line(0, &li.line) == 0)
+			exit(EXIT_FAILURE);
+		env = dict_to_tab(dicts[ENV]); /* transform env dict into tab */
+		li.big_line = ft_strsplit(li.line, ';');
 		i = 0;
-		while (big_line[i])
+		while (li.big_line[i])
 		{
-			split_line = split_parse(big_line[i], dictenv);
-			if (initcmd(dictenv, cmd, split_line) != -1)
-				launch_exec(cmd, dictenv, env);
-			ft_delsplit(split_line);
+			li.split_line = split_parse(li.big_line[i], dicts);
+			if (initcmd(dicts[ENV], cmd, li.split_line) != -1)
+				launch_exec(cmd, dicts[ENV], env);
+			ft_delsplit(li.split_line);
 			i++;
 		}
-		clean_malloc(line, big_line, env);
+		clean_malloc(li.line, li.big_line, env);
 	}
 }

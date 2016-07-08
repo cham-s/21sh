@@ -17,7 +17,7 @@ void	dict_insert(t_dict *d, const char *key, const char *value)
 	t_elt			*e;
 	unsigned long	h;
 
-	if (!key || !value || !d)
+	if (!key || !value)
 		return ;
 	e = (t_elt *)ft_memalloc(sizeof(t_elt));
 	if (!e)

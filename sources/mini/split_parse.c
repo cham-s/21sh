@@ -47,29 +47,38 @@ static size_t	ft_strlenchar(const char *s)
 	return (i);
 }
 
-char			*replace_symbol(char *s, t_dict *env)
+/*
+ * check if the splitted string is a token then replace it
+ * with its corresponding value
+ */
+
+static char			*replace_symbol(char *s, t_dict **dicts)
 {
 	char	*key;
 	int		slash_pos;
 
-	slash_pos = S_POSITION(s);
+	slash_pos = ft_strchr(s, '/') - s;
 	if ((key = is_tokenstr(s)))
 	{
 		if (slash_pos == 2 || slash_pos == 1)
 		{
-			if (replace_s(&s, env, &key, slash_pos) == -1)
+			if (replace_s(&s, dicts, &key, slash_pos) == -1)
 				return (s);
 		}
 		else
 		{
-			if (replace_all(&s, env, &key) == -1)
+			if (replace_all(&s, dicts, &key) == -1)
 				return (s);
 		}
 	}
 	return (s);
 }
 
-char			**split_parse(char const *s, t_dict *env)
+/*
+ * split the line then parse it to check for shell token
+ */
+
+char			**split_parse(char const *s, t_dict **dicts)
 {
 	char	**new;
 	size_t	len;
@@ -90,7 +99,7 @@ char			**split_parse(char const *s, t_dict *env)
 			s++;
 		strlen = ft_strlenchar(s);
 		new[i] = ft_strndup(s, strlen);
-		new[i] = replace_symbol(new[i], env);
+		new[i] = replace_symbol(new[i], dicts);
 		s += strlen;
 		i++;
 	}
