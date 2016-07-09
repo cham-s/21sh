@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "21sh.h"
 
 char	*join_with_chr(char *var, char *value, char c)
 {
@@ -74,7 +74,7 @@ void	sig_handler(int signal)
 	if (signal == SIGINT)
 	{
 		ft_putchar('\n');
-		ft_putstr("minishell - Ctrl-c -> ");
+		ft_putstr("21sh - Ctrl-c -> ");
 	}
 }
 

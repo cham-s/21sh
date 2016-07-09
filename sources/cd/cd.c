@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "21sh.h"
 #include "cd.h"
 
 t_cdflag		g_options;

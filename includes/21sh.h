@@ -6,12 +6,12 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/16 09:37:41 by cattouma          #+#    #+#             */
-/*   Updated: 2016/07/09 17:14:41 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/07/09 21:27:35 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef TWENTYONE_H
+# define TWENTYONE_H
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <signal.h>

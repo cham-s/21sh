@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "21sh.h"
 
 void	destroy_array_dict(t_dict **dicts, int dict_len)
 {

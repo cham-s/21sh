@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "21sh.h"
 
 int		ft_isnum(char c)
 {
@@ -58,7 +58,7 @@ void	put_error(char *path, char *cmd)
 		message = "Permission denied";
 	else
 		message = "Permission denied";
-	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd("21sh: ", 2);
 	ft_putstr_fd(message, 2);
 	ft_putstr_fd(": ", 2);
 	ft_putendl_fd(cmd, 2);

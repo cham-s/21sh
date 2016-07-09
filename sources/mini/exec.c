@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "21sh.h"
 #include "cd.h"
 
 static int		check_bltn(t_cmd *cmd, t_dict **dicts)
@@ -73,7 +73,7 @@ void			display_prompt(t_dict *dictenv)
 	char *prompt;
 
 	prompt = dict_search(dictenv, "PWD");
-	prompt = (dict_search(dictenv, "PWD") ? prompt : "minishell");
+	prompt = (dict_search(dictenv, "PWD") ? prompt : "21sh");
 	ft_putstr("\x1B[33m");
 	ft_putstr(prompt);
 	ft_putstr("$> ");

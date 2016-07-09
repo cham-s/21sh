@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "21sh.h"
 
 static int		loop_paths(t_cmd *cmd, t_dict **dicts)
 {

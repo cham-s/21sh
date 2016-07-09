@@ -1,4 +1,4 @@
-NAME = 21sh 
+NAME = 21sh
 CC = clang
 LIB = libft/libft.a
 FLAGS = -g -Wall -Werror -Wextra
@@ -17,8 +17,8 @@ $(NAME): $(OBJS) $(LIB)
 $(LIB):
 	make -C libft/
 
-%.o : %.c 
-	$(CC) -c $(FLAGS) $(INCLUDES) $< -o $@ 
+%.o : %.c
+	$(CC) -c $(FLAGS) $(INCLUDES) $< -o $@
 
 clean:
 	rm -f $(OBJS)

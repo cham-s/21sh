@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "21sh.h"
 #include "cd.h"
 
 int		start_unsetenv(t_dict *env, t_cmd *cmd)
@@ -56,7 +56,7 @@ int		start_exit(t_dict *env, t_cmd *cmd)
 				exit(ft_atoi(cmd->av[1]));
 			else
 			{
-				ft_putstr_fd("minishell: ", 2);
+				ft_putstr_fd("21sh: ", 2);
 				ft_putstr_fd(cmd->av[1], 2);
 				ft_putendl_fd(": numeric argument required", 2);
 				exit(-1);
