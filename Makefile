@@ -1,31 +1,60 @@
-NAME = 21sh
-CC = clang
-LIB = libft/libft.a
-FLAGS = -g -Wall -Werror -Wextra
-INCLUDES = -I includes -I libft/includes
-OBJS = main.o utils.o exec.o env.o cmd.o dictionary.o dictionary2.o split_parse.o \
-	   error.o parser.o init.o cd_initopt.o cd_parser.o cd.o builtins.o builtins2.o
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2016/06/02 16:30:48 by cattouma          #+#    #+#              #
+#    Updated: 2016/06/15 09:21:34 by cattouma         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME 		= 21sh
+CC 			= clang
+LIB 		= libft/libft.a
+FLAGS 		= -Wall -Werror -Wextra
+INCLUDES 	= -I include -I libft/includes
+INC			= include/21sh.h include/cd.h include/dict.h
+OBJDIR		= obj
+OBJS 		= $(OBJDIR)/main.o\
+			  $(OBJDIR)/utils.o\
+			  $(OBJDIR)/exec.o\
+			  $(OBJDIR)/env.o\
+			  $(OBJDIR)/cmd.o\
+			  $(OBJDIR)/dictionary.o\
+			  $(OBJDIR)/dictionary2.o\
+			  $(OBJDIR)/split_parse.o \
+			  $(OBJDIR)/error.o\
+			  $(OBJDIR)/parser.o\
+			  $(OBJDIR)/init.o\
+			  $(OBJDIR)/cd_initopt.o\
+			  $(OBJDIR)/cd_parser.o\
+			  $(OBJDIR)/cd.o\
+			  $(OBJDIR)/builtins.o\
+			  $(OBJDIR)/builtins2.o
+
 .PHONY: all clean fclean re
 
-VPATH = sources/mini:sources/cd:sources/dict
+VPATH = src/mini:src/cd:src/dict
 
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIB)
-	$(CC) $(FLAGS) $(INCLUDES) $(OBJS) $(LIB) -o $(NAME)
+	$(CC) $(FLAGS) $(INCLUDES) $(OBJS) $(LIB) -o $(NAME) -ltermcap
 
 $(LIB):
 	make -C libft/
 
-%.o : %.c
+$(OBJDIR)/%.o : %.c $(INC)
+	@mkdir -p $(OBJDIR)
 	$(CC) -c $(FLAGS) $(INCLUDES) $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	rm -rf $(OBJDIR)
 
 fclean: clean
 	make fclean -C libft/
 	rm -f $(NAME)
-	rm -rf $(NAME).dsym
 
 re: fclean all
