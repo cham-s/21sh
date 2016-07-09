@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 10:32:41 by cattouma          #+#    #+#             */
-/*   Updated: 2016/03/16 08:49:28 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/07/09 15:19:40 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void			interpret_command(t_dict **dicts, t_cmd *cmd)
 		while (li.big_line[i])
 		{
 			li.split_line = split_parse(li.big_line[i], dicts);
-			if (initcmd(dicts[ENV], cmd, li.split_line) != -1)
+			if (initcmd(dicts, cmd, li.split_line) != -1)
 				launch_exec(cmd, dicts[ENV], env);
 			ft_delsplit(li.split_line);
 			i++;

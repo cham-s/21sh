@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/16 09:37:41 by cattouma          #+#    #+#             */
-/*   Updated: 2016/07/08 02:08:44 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/07/09 15:18:05 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_dict				*envcpy(char **env);
 void				ft_putenv(t_dict *env);
 char				**dict_to_tab(t_dict *env);
 char				*join_with_chr(char *var, char *value, char c);
-int					initcmd(t_dict *env, t_cmd *cmd, char **line);
+int					initcmd(t_dict **dicts, t_cmd *cmd, char **line);
 void				put_error(char *path, char *cmd);
 void				launch_exec(t_cmd *cmd, t_dict *env, char **env_tab);
 char				**split_parse(char const *s, t_dict **dicts);
