@@ -17,6 +17,7 @@
 # include <signal.h>
 # include "libft.h"
 # include "dict.h"
+# include "key.h"
 
 // printf
 # include <stdio.h>

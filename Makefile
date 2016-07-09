@@ -36,7 +36,7 @@ OBJS 		= $(OBJDIR)/main.o\
 
 .PHONY: all clean fclean re
 
-VPATH = src/mini:src/cd:src/dict
+VPATH = src/21sh:src/cd:src/dict
 
 all: $(NAME)
 
