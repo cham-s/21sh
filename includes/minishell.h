@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/16 09:37:41 by cattouma          #+#    #+#             */
-/*   Updated: 2016/07/09 15:18:05 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/07/09 17:14:41 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,17 @@ char				**dict_to_tab(t_dict *env);
 char				*join_with_chr(char *var, char *value, char c);
 int					initcmd(t_dict **dicts, t_cmd *cmd, char **line);
 void				put_error(char *path, char *cmd);
-void				launch_exec(t_cmd *cmd, t_dict *env, char **env_tab);
+void				launch_exec(t_cmd *cmd, t_dict **dicts, char **env_tab);
 char				**split_parse(char const *s, t_dict **dicts);
 int					ft_setenv(const char *k, const char *v, t_dict *e, int ov);
 int					ft_unsetenv(const char *key, t_dict *env);
 int					is_tokenchr(char c);
 char				*is_tokenstr(const char *s);
 int					init_tokens(t_dict **tokens);
+int					init_binaries(t_dict **binaries);
 void				env_missing(char *envkey);
 int					is_numeric(char *s);
-int					start_env(t_dict *env, t_cmd *cmd);
+int					start_env(t_dict **dicts, t_cmd *cmd);
 int					start_unsetenv(t_dict *env, t_cmd *cmd);
 int					start_setenv(t_dict *env, t_cmd *cmd);
 int					start_exit(t_dict *env, t_cmd *cmd);

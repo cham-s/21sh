@@ -6,11 +6,19 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/05 09:57:10 by cattouma          #+#    #+#             */
-/*   Updated: 2016/07/08 01:26:07 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/07/09 15:28:07 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int		init_binaries(t_dict **binaries)
+{
+	*binaries = dict_create();
+	if (*binaries == NULL)
+		return (-1);
+	return (0);
+}
 
 int		init_tokens(t_dict **tokens)
 {

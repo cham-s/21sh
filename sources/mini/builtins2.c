@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/16 08:24:07 by cattouma          #+#    #+#             */
-/*   Updated: 2016/03/16 09:24:34 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/07/09 17:21:43 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,19 @@ static int			check_options(int ac, char **av, int *f, int *start)
 	return (0);
 }
 
-static void			st_exec(t_cmd *tcmd, t_dict *env, int *f)
+static void			st_exec(t_cmd *tcmd, t_dict **dicts, int *f)
 {
 	char	**env_tab;
 
-	env_tab = dict_to_tab(env);
+	env_tab = dict_to_tab(dicts[ENV]);
 	if (!*f)
-		launch_exec(tcmd, env, env_tab);
+		launch_exec(tcmd, dicts, env_tab);
 	else
-		launch_exec(tcmd, env, NULL);
+		launch_exec(tcmd, dicts, NULL);
 	ft_delsplit(env_tab);
 }
 
-int					start_env(t_dict *env, t_cmd *cmd)
+int					start_env(t_dict **dicts, t_cmd *cmd)
 {
 	t_cmd	tcmd;
 	char	**s_line;
@@ -73,7 +73,7 @@ int					start_env(t_dict *env, t_cmd *cmd)
 	start = 0;
 	if (cmd->ac == 1)
 	{
-		ft_putenv(env);
+		ft_putenv(dicts[ENV]);
 		return (1);
 	}
 	if (check_options(cmd->ac, cmd->av, &f, &start) == -1)
@@ -83,7 +83,7 @@ int					start_env(t_dict *env, t_cmd *cmd)
 		s_line = cmd->av + 1;
 	else
 		s_line = cmd->av + start + (f ? 1 : 0);
-	if (initcmd(env, &tcmd, s_line) != -1)
-		st_exec(&tcmd, env, &f);
+	if (initcmd(dicts, &tcmd, s_line) != -1)
+		st_exec(&tcmd, dicts, &f);
 	return (1);
 }
