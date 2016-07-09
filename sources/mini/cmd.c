@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 10:43:16 by cattouma          #+#    #+#             */
-/*   Updated: 2016/07/09 18:51:27 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/07/09 18:58:18 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,8 @@ int				initcmd(t_dict **dicts, t_cmd *cmd, char **split_line)
 	cmd->av = split_line;
 	cmd->ac = ft_tablen(cmd->av);
 	
-	// check if the condition below is really needed
 	if (cmd->av[0])
 	{
-		// strdup to bin_path?
 		if ((bin_path = dict_search(dicts[BIN], cmd->av[0])))
 		{
 			cmd->exepath = ft_strdup(bin_path);
