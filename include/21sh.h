@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 21:30:06 by cattouma          #+#    #+#             */
-/*   Updated: 2016/07/09 21:30:11 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/07/10 16:48:16 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <signal.h>
 # include "libft.h"
 # include "dict.h"
+# include "tercap.h"
 
 // printf
 # include <stdio.h>
