@@ -6,7 +6,7 @@
 #    By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/02 16:30:48 by cattouma          #+#    #+#              #
-#    Updated: 2016/07/10 16:40:32 by cattouma         ###   ########.fr        #
+#    Updated: 2016/07/10 17:58:33 by cattouma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ OBJS 		= $(OBJDIR)/main.o\
 
 .PHONY: all clean fclean re
 
-VPATH = src/21sh:src/cd:src/dict
+VPATH = src/21s:src/cd:src/dict
 
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 21:30:06 by cattouma          #+#    #+#             */
-/*   Updated: 2016/07/10 16:48:16 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/07/10 17:55:55 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct		s_line_info
 
 t_dict				*envcpy(char **env);
 void				ft_putenv(t_dict *env);
+void				print_env(char **env);
 char				**dict_to_tab(t_dict *env);
 char				*join_with_chr(char *var, char *value, char c);
 int					initcmd(t_dict **dicts, t_cmd *cmd, char **line);
@@ -57,7 +58,7 @@ int					init_tokens(t_dict **tokens);
 int					init_binaries(t_dict **binaries);
 void				env_missing(char *envkey);
 int					is_numeric(char *s);
-int					start_env(t_dict **dicts, t_cmd *cmd);
+int					start_env(t_dict **dicts, t_cmd *cmd, char **env);
 int					start_unsetenv(t_dict *env, t_cmd *cmd);
 int					start_setenv(t_dict *env, t_cmd *cmd);
 int					start_exit(t_dict *env, t_cmd *cmd);
