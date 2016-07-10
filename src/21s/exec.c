@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 10:32:41 by cattouma          #+#    #+#             */
-/*   Updated: 2016/07/10 17:55:56 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/07/10 19:34:54 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static int		check_bltn(t_cmd *cmd, t_dict **dicts, char **env)
 			is_blt = start_cd(dicts[ENV], cmd);
 		else if (!ft_strcmp(cmd->av[0], "exit"))
 			is_blt = start_exit(dicts[ENV], cmd);
+		else if (!ft_strcmp(cmd->av[0], "echo"))
+			is_blt = start_echo(dicts[ENV], cmd);
 		if (is_blt)
 			return (1);
 	}

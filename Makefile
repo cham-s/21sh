@@ -6,7 +6,7 @@
 #    By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/02 16:30:48 by cattouma          #+#    #+#              #
-#    Updated: 2016/07/10 17:58:33 by cattouma         ###   ########.fr        #
+#    Updated: 2016/07/10 19:31:46 by cattouma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,11 +32,12 @@ OBJS 		= $(OBJDIR)/main.o\
 			  $(OBJDIR)/cd_parser.o\
 			  $(OBJDIR)/cd.o\
 			  $(OBJDIR)/builtins.o\
-			  $(OBJDIR)/builtins2.o
+			  $(OBJDIR)/builtins2.o\
+			  $(OBJDIR)/echo.o
 
 .PHONY: all clean fclean re
 
-VPATH = src/21s:src/cd:src/dict
+VPATH = src/21s:src/cd:src/dict:src/echo
 
 all: $(NAME)
 

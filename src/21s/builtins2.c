@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/16 08:24:07 by cattouma          #+#    #+#             */
-/*   Updated: 2016/07/10 17:55:55 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/07/10 19:16:29 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int					start_env(t_dict **dicts, t_cmd *cmd, char **env)
 	start = 0;
 	if (cmd->ac == 1)
 	{
-		//ft_putenv(dicts[ENV]);
 		print_env(env);
 		return (1);
 	}

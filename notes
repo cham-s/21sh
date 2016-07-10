@@ -1,0 +1,32 @@
+echo
+
+args:
+ -n  = no new line at the end of the output
+ -e  = enable interpretation of '\'
+ -E = disable interpretation of '\' (default behaviour)
+
+ \\
+ \a
+ \n
+ \b
+ \c
+ \e
+ \f
+ \n
+ \r
+ \t
+ \v
+
+ byte with octal value NNN (1 to 3 digits)
+ \xHH
+ byte with hexadecimal value HH (1 to 2 digits)
+
+if bultin == echo
+
+by default
+	print every thing after echo, ignore every \ char
+
+echo printf function
+
+print_echo(char **args, t_option *opt);
+
