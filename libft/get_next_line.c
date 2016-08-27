@@ -76,27 +76,43 @@ static void		addnode(t_file **btree, t_file *new)
 	}
 }
 
+static int		is_special_key(unsigned int key)
+{
+	if (key == K_UP || key == K_DOWN || key == K_LEFT || key == K_RIGHT ||
+		key == K_ESC || key == K_ENT || key == K_DEL || key == K_BKSPC)
+		return 1;
+	return 0;
+}
+
 static int		getline(t_file *fpnode, char **line, int fd)
 {
 	int				ret;
 	int				len;
 	char			buf[BUFF_SIZE + 1];
 	char			*tmp;
+	unsigned int	key;
+	int				is_running;
 
+	is_running = 1;
 	len = 0;
 	ret = BUFF_SIZE;
-	while (!(ft_strchr(fpnode->buffer, '\n')) && ret)
+	while (is_running && ret)
 	{
 		if ((ret = read(fd, buf, BUFF_SIZE)) < 0)
 			return (ret);
-		buf[ret] = '\0';
-		fpnode->buffer = ft_strjoinfree(fpnode->buffer, buf);
+		key = *(unsigned int *)buf;
+		if (is_special_key)
+		{
+			ft_putnbr(key);
+			ft_putendl("");
+		}
+		else
+		{
+			buf[1] = '\0';
+			fpnode->buffer = ft_strjoinfree(fpnode->buffer, buf);
+		}
 	}
-	while (fpnode->buffer[len] && fpnode->buffer[len] != '\n')
-		len++;
-	*line = ft_strsub(fpnode->buffer, 0, len);
-	if (fpnode->buffer[len] == '\n')
-		len++;
+	*line = ft_strsub(fpnode->buffer, 0, 1);
 	tmp = fpnode->buffer;
 	fpnode->buffer = ft_strdup(fpnode->buffer + len);
 	ft_strdel(&tmp);
@@ -104,6 +120,35 @@ static int		getline(t_file *fpnode, char **line, int fd)
 		return (0);
 	return (1);
 }
+
+/* static int		getline(t_file *fpnode, char **line, int fd) */
+/* { */
+/* 	int				ret; */
+/* 	int				len; */
+/* 	char			buf[BUFF_SIZE + 1]; */
+/* 	char			*tmp; */
+/*  */
+/* 	len = 0; */
+/* 	ret = BUFF_SIZE; */
+/* 	while (!(ft_strchr(fpnode->buffer, '\n')) && ret) */
+/* 	{ */
+/* 		if ((ret = read(fd, buf, BUFF_SIZE)) < 0) */
+/* 			return (ret); */
+/* 		buf[ret] = '\0'; */
+/* 		fpnode->buffer = ft_strjoinfree(fpnode->buffer, buf); */
+/* 	} */
+/* 	while (fpnode->buffer[len] && fpnode->buffer[len] != '\n') */
+/* 		len++; */
+/* 	*line = ft_strsub(fpnode->buffer, 0, len); */
+/* 	if (fpnode->buffer[len] == '\n') */
+/* 		len++; */
+/* 	tmp = fpnode->buffer; */
+/* 	fpnode->buffer = ft_strdup(fpnode->buffer + len); */
+/* 	ft_strdel(&tmp); */
+/* 	if (ret == 0 && *line[0] == '\0') */
+/* 		return (0); */
+/* 	return (1); */
+/* } */
 
 int				get_next_line(int const fd, char **line)
 {

@@ -69,6 +69,7 @@ void		key_handler(unsigned int key, t_entlist *l, int *running)
 	{
 		clean_screen(l);
 		*running = 0;
+		return ;
 	}
 	else
 	{
