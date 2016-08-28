@@ -16,6 +16,7 @@
 #include <sys/uio.h>
 #include <unistd.h>
 #include "21sh.h"
+#include "get_next_line.h"
 
 # define MAX_KEY_LENGTH 5
 
@@ -136,7 +137,7 @@ static int		getline2(t_file *fpnode, char **line, int fd)
 	tmp = fpnode->buffer;
 	fpnode->buffer = ft_strdup(fpnode->buffer + len);
 	ft_strdel(&tmp);
-	reset_default_mode(&l->old_term);
+	reset_default_mode(&old_term);
 	if (ret == 0 && *line[0] == '\0')
 		return (0);
 	return (1);

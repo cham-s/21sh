@@ -33,7 +33,7 @@ OBJ = ft_atoi.o ft_bzero.o ft_isalnum.o ft_isalpha.o \
 	ft_lstmap.o ft_lstnewref.o ft_strsplitspc.o ft_strndup.o ft_memdup.o \
 	ft_strlenchr.o ft_lstappend.o ft_lstprint.o  ft_lstlen.o ft_lstinsertafter.o \
  	ft_lstremove.o ft_swap.o ft_stronlyhas.o ft_size_to_allocate.o ft_splitspaces.o \
-	ft_isspace.o ft_lstdelmem.o get_next_line.o ft_strjoinfree.o ft_tablen.o
+	ft_isspace.o ft_lstdelmem.o ft_strjoinfree.o ft_tablen.o
 
 CFLAGS = -g -c -Wall -Wextra -Werror -I includes
 .PHONY: all clean fclean re

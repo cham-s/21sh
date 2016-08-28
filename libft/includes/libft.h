@@ -15,13 +15,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
-# include "get_next_line.h"
-
-typedef enum		e_bool
-{
-	false = 0,
-	true,
-}					t_bool;
 
 typedef	struct		s_list
 {
@@ -39,7 +32,7 @@ int					ft_isalpha(int c);
 int					ft_isascii(int c);
 int					ft_isdigit(int c);
 int					ft_isprint(int c);
-t_bool				ft_isspace(int c);
+int					ft_isspace(int c);
 void				*ft_memccpy(void *dest, const void *src, int c, size_t n);
 void				*ft_memcpy(void *dst, const void *src, size_t len);
 void				*ft_memmove(void *dest, const void *src, size_t n);
@@ -104,9 +97,9 @@ void				*ft_memdup(const void *s1, size_t len);
 size_t				ft_strlenchr(const char *s, char c);
 char				*ft_arraytostr(char **str, char c);
 void				ft_swap(void *a, void *b);
-t_bool				ft_stronlyhas(const char *s, char c);
+int					ft_stronlyhas(const char *s, char c);
 size_t				size_to_allocate(const char *s, char c);
 char				**ft_splitspaces(char const *s);
-size_t				ft_tablen(char **tab);
+size_t				ft_tablen(char **t);
 
 #endif

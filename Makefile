@@ -15,9 +15,10 @@ CC 			= clang
 LIB 		= libft/libft.a
 FLAGS 		= -Wall -Werror -Wextra
 INCLUDES 	= -I include -I libft/includes
-INC			= include/21sh.h include/cd.h include/dict.h
+INC			= include/21sh.h include/cd.h include/dict.h include/ft_select.h
 OBJDIR		= obj
 OBJS 		= $(OBJDIR)/main.o\
+			  $(OBJDIR)/get_next_line.o\
 			  $(OBJDIR)/utils.o\
 			  $(OBJDIR)/exec.o\
 			  $(OBJDIR)/env.o\
@@ -33,11 +34,13 @@ OBJS 		= $(OBJDIR)/main.o\
 			  $(OBJDIR)/cd.o\
 			  $(OBJDIR)/builtins.o\
 			  $(OBJDIR)/builtins2.o\
-			  $(OBJDIR)/echo.o
+			  $(OBJDIR)/echo.o\
+			  $(OBJDIR)/attr.o\
+			  $(OBJDIR)/init_term.o
 
 .PHONY: all clean fclean re
 
-VPATH = src/21s:src/cd:src/dict:src/echo
+VPATH = src/21s:src/cd:src/dict:src/echo:src/term
 
 all: $(NAME)
 

@@ -17,8 +17,9 @@
 # include <signal.h>
 # include "libft.h"
 # include "dict.h"
-# include "tercap.h"
+# include "ft_select.h"
 # include "echo.h"
+# include "get_next_line.h"
 
 // printf
 # include <stdio.h>
