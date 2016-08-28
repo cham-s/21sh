@@ -12,14 +12,14 @@
 
 #include "ft_select.h"
 
-void	init_term_data(t_entlist *l)
+void	init_term_data(int fd)
 {
 	char	*termtype;
 	int		success;
 	char	*term_buffer;
 
 	term_buffer = NULL;
-	if (!isatty(l->fd))
+	if (!isatty(fd))
 	{
 		ft_putendl_fd("Not a terminal device", 2);
 		exit(EXIT_FAILURE);

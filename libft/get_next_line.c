@@ -16,6 +16,19 @@
 #include <sys/uio.h>
 #include <unistd.h>
 
+# define MAX_KEY_LENGTH 5
+
+# define K_UP		4283163
+# define K_DOWN		4348699
+# define K_LEFT		4479771
+# define K_RIGHT	4414235
+# define K_ESC		27
+# define K_ENT		10
+# define K_TAB		9
+# define K_DEL		2117294875
+# define K_BKSPC	127
+# define K_SPACE	32
+
 static t_file	*fpnodenew(int fd)
 {
 	t_file			*new;
@@ -92,16 +105,21 @@ static int		getline(t_file *fpnode, char **line, int fd)
 	char			*tmp;
 	unsigned int	key;
 	int				is_running;
+	struct termios old_term;
 
+	init_raw_mode(&old_term);
 	is_running = 1;
 	len = 0;
 	ret = BUFF_SIZE;
 	while (is_running && ret)
 	{
-		if ((ret = read(fd, buf, BUFF_SIZE)) < 0)
-			return (ret);
+		ft_bzero(buf, MAX_KEY_LENGTH);
+		if ((ret = read(fd, buf, MAX_KEY_LENGTH)) < 0)
+			return (-1);
 		key = *(unsigned int *)buf;
-		if (is_special_key)
+			ft_putnbr(key);
+			ft_putendl("");
+		if (is_special_key(key))
 		{
 			ft_putnbr(key);
 			ft_putendl("");
