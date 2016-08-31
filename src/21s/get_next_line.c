@@ -21,7 +21,7 @@
 static int		is_special_key(unsigned int key)
 {
 	if (key == K_UP || key == K_DOWN || key == K_LEFT || key == K_RIGHT ||
-		key == K_ESC || key == K_ENT || key == K_DEL || key == K_BKSPC)
+		key == K_ESC || key == K_ENT || key == K_DEL || key == K_BKSPC || key == K_TAB)
 		return 1;
 	return 0;
 }
@@ -59,7 +59,8 @@ static int		getline2(char *buffer, char **line, int fd)
 			buffer = ft_strjoinfree(buffer, buf);
 		}
 	}
-	*line = ft_strsub(buffer, 0, BUFF_SIZE);
+	ft_putendl(buffer);
+	*line = ft_strdup(buffer);
 	tmp = buffer;
 	buffer = ft_strdup(buffer);
 	ft_strdel(&tmp);
