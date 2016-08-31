@@ -26,6 +26,8 @@ static int		is_special_key(unsigned int key)
 	return 0;
 }
 
+
+// if potential leaks probably here
 static int		getline2(char *buffer, char **line, int fd)
 {
 	int				ret;
@@ -47,10 +49,9 @@ static int		getline2(char *buffer, char **line, int fd)
 		key = *(unsigned int *)buf;
 		if (is_special_key(key))
 		{
+			// handle special key with termcap
 			if (key == K_ENT)
 				is_running = 0;
-			ft_putnbr(key);
-			ft_putendl("");
 		}
 		else
 		{
@@ -59,7 +60,7 @@ static int		getline2(char *buffer, char **line, int fd)
 			buffer = ft_strjoinfree(buffer, buf);
 		}
 	}
-	ft_putendl(buffer);
+	ft_putendl("");
 	*line = ft_strdup(buffer);
 	tmp = buffer;
 	buffer = ft_strdup(buffer);

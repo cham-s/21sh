@@ -49,7 +49,15 @@
 
 # define MAX_SIGNAL 32
 
-typedef struct		s_entry
+typedef struct		s_line
+{
+	char			*line;
+	int				position;
+	int				size;
+}					t_entry;
+
+
+typedef struct		s_line
 {
 	char			*line;
 	int				hl;

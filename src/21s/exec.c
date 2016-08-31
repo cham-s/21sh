@@ -96,9 +96,6 @@ void			interpret_command(t_dict **dicts, t_cmd *cmd)
 		display_prompt(dicts[ENV]);
 		if (get_next_line(0, &li.line) == 0)
 			exit(EXIT_FAILURE);
-		//exit
-		ft_putendl(li.line);
-		exit(EXIT_FAILURE);
 		env = dict_to_tab(dicts[ENV]); /* transform env dict into tab */
 		li.big_line = ft_strsplit(li.line, ';');
 		i = 0;
