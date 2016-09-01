@@ -77,6 +77,10 @@ static int		getline2(char **line, int fd)
 			// handle special key with termcap
 			if (l.key == K_ENT)
 				is_running = 0;
+			else if (l.key == K_LEFT)
+				ft_putstr(tgetstr("le", NULL));
+			else if (l.key == K_RIGHT)
+				ft_putstr(tgetstr("nd", NULL));
 		}
 		else
 		{
