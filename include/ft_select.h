@@ -52,12 +52,15 @@
 typedef struct		s_line
 {
 	char			*line;
+	char			*buffer;
+	char			*tmp;
 	int				position;
-	int				size;
-}					t_entry;
+	size_t			size;
+	unsigned int	key;
+}					t_line;
 
 
-typedef struct		s_line
+typedef struct		s_entry
 {
 	char			*line;
 	int				hl;
@@ -118,5 +121,7 @@ void				key_handler(unsigned int key, t_entlist *l, int *running);
 void				select_specific(t_entlist *l, int value, int v);
 void				draw_title(t_entlist *l);
 void				draw_help(t_entlist *l);
+
+void				init_line(t_line *l);
 
 #endif

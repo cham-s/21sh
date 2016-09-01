@@ -12,6 +12,16 @@
 
 #include "21sh.h"
 
+void	init_line(t_line *l)
+{
+	l->line = NULL;
+	l->buffer = ft_strdup("");
+	l->tmp = NULL;
+	l->position = 0;
+	l->size = 0;
+	l->key = 0;
+}
+
 int		init_binaries(t_dict **binaries)
 {
 	*binaries = dict_create();

@@ -26,46 +26,69 @@ static int		is_special_key(unsigned int key)
 	return 0;
 }
 
+/* void	go_right(t_entlist *l) */
+/* { */
+/* 	int i; */
+/*  */
+/* 	i = 0; */
+/* 	l->list->us = 0; */
+/* 	while (i < l->row - 1) */
+/* 	{ */
+/* 		l->list = l->list->next; */
+/* 		i++; */
+/* 	} */
+/* 	l->list->us = 1; */
+/* } */
+/*  */
+/* void	go_right(t_entlist *l) */
+/* { */
+/* 	int i; */
+/*  */
+/* 	i = 0; */
+/* 	l->list->us = 0; */
+/* 	while (i < l->row - 1) */
+/* 	{ */
+/* 		l->list = l->list->next; */
+/* 		i++; */
+/* 	} */
+/* 	l->list->us = 1; */
+/* } */
+
 
 // if potential leaks probably here
-static int		getline2(char *buffer, char **line, int fd)
+static int		getline2(char **line, int fd)
 {
 	int				ret;
 	char			buf[BUFF_SIZE + 1];
-	char			*tmp;
-	unsigned int	key;
 	int				is_running;
-	struct termios old_term;
+	t_line			l;
 
-	init_term_data(fd);
-	init_raw_mode(&old_term);
 	is_running = 1;
 	ret = BUFF_SIZE;
+	init_line(&l);
 	while (is_running && ret)
 	{
 		ft_bzero(buf, MAX_KEY_LENGTH);
 		if ((ret = read(fd, buf, MAX_KEY_LENGTH)) < 0)
 			return (-1);
-		key = *(unsigned int *)buf;
-		if (is_special_key(key))
+		l.key = *(unsigned int *)buf;
+		if (is_special_key(l.key))
 		{
 			// handle special key with termcap
-			if (key == K_ENT)
+			if (l.key == K_ENT)
 				is_running = 0;
 		}
 		else
 		{
 			buf[ret] = '\0';
 			ft_putstr(buf);
-			buffer = ft_strjoinfree(buffer, buf);
+			l.buffer = ft_strjoinfree(l.buffer, buf);
 		}
 	}
 	ft_putendl("");
-	*line = ft_strdup(buffer);
-	tmp = buffer;
-	buffer = ft_strdup(buffer);
-	ft_strdel(&tmp);
-	reset_default_mode(&old_term);
+	*line = ft_strdup(l.buffer);
+	l.tmp = l.buffer;
+	ft_strdel(&l.tmp);
 	if (ret == 0 && *line[0] == '\0')
 		return (0);
 	return (1);
@@ -73,15 +96,17 @@ static int		getline2(char *buffer, char **line, int fd)
 
 int				get_next_line(int const fd, char **line)
 {
-	static char		*buf = NULL;
 	int				res;
+	struct termios old_term;
 
 	if (fd < 0 || !line)
 		return (-1);
 	else
 	{
-		buf = ft_strdup("");
-		res = getline2(buf, line, fd);
+		init_term_data(fd);
+		init_raw_mode(&old_term);
+		res = getline2(line, fd);
+		reset_default_mode(&old_term);
 		return (res);
 	}
 }
