@@ -18,7 +18,6 @@ INCLUDES 	= -I include -I libft/includes
 INC			= include/21sh.h include/cd.h include/dict.h include/ft_select.h
 OBJDIR		= obj
 OBJS 		= $(OBJDIR)/main.o\
-			  $(OBJDIR)/get_next_line.o\
 			  $(OBJDIR)/utils.o\
 			  $(OBJDIR)/exec.o\
 			  $(OBJDIR)/env.o\
@@ -36,7 +35,8 @@ OBJS 		= $(OBJDIR)/main.o\
 			  $(OBJDIR)/builtins2.o\
 			  $(OBJDIR)/echo.o\
 			  $(OBJDIR)/attr.o\
-			  $(OBJDIR)/init_term.o
+			  $(OBJDIR)/init_term.o\
+			  $(OBJDIR)/get_line_buffer.o\
 
 .PHONY: all clean fclean re
 

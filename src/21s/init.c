@@ -12,7 +12,7 @@
 
 #include "21sh.h"
 
-void	init_line(t_line *l)
+void	init_line(t_line *l, t_dict *env)
 {
 	l->line = NULL;
 	l->buffer = ft_strdup("");
@@ -20,6 +20,8 @@ void	init_line(t_line *l)
 	l->position = 0;
 	l->size = 0;
 	l->key = 0;
+	l->start = ft_strlen(dict_search(env, "PWD") + 3); // + '$> '
+	l->end = l->start;
 }
 
 int		init_binaries(t_dict **binaries)

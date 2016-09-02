@@ -15,12 +15,17 @@
 # include <curses.h>
 # include <term.h>
 # include <termios.h>
+# include <sys/types.h>
 # include <sys/ioctl.h>
 # include <fcntl.h>
 # include <signal.h>
 # include <sys/stat.h>
+# include <sys/uio.h>
+# include <unistd.h>
 # include "libft.h"
+# include "dict.h"
 # define MAX_KEY_LENGTH 5
+# define BUFF_SIZE	5
 
 # define K_UP		4283163
 # define K_DOWN		4348699
@@ -49,12 +54,22 @@
 
 # define MAX_SIGNAL 32
 
+typedef struct		s_file
+{
+	int				fd;
+	char			*buffer;
+	struct s_file	*right;
+	struct s_file	*left;
+}					t_file;
+
 typedef struct		s_line
 {
 	char			*line;
 	char			*buffer;
 	char			*tmp;
 	int				position;
+	size_t			start;
+	size_t			end;
 	size_t			size;
 	unsigned int	key;
 }					t_line;
@@ -89,6 +104,9 @@ typedef	struct		s_entlist
 	struct termios	old_term;
 }					t_entlist;
 
+
+int					get_line_buffer(int const fd, char **line, t_dict *env);
+
 t_entlist			*ret_entlist(void);
 void				sig_handler(int sig);
 void				signals(void);
@@ -122,6 +140,6 @@ void				select_specific(t_entlist *l, int value, int v);
 void				draw_title(t_entlist *l);
 void				draw_help(t_entlist *l);
 
-void				init_line(t_line *l);
+void				init_line(t_line *l, t_dict *env);
 
 #endif

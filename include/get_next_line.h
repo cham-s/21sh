@@ -14,14 +14,7 @@
 # define GET_NEXT_LINE_H
 # define BUFF_SIZE 5 
 
-typedef struct		s_file
-{
-	int				fd;
-	char			*buffer;
-	struct s_file	*right;
-	struct s_file	*left;
-}					t_file;
 
-int					get_next_line(int const fd, char **line);
+int					get_next_line(int const fd, char **line, t_dict );
 
 #endif

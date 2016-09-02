@@ -19,7 +19,6 @@
 # include "dict.h"
 # include "ft_select.h"
 # include "echo.h"
-# include "get_next_line.h"
 
 // printf
 # include <stdio.h>

@@ -16,6 +16,7 @@
 #include <sys/uio.h>
 #include <unistd.h>
 #include "21sh.h"
+#include "dict.h"
 #include "get_next_line.h"
 
 static int		is_special_key(unsigned int key)
@@ -98,7 +99,7 @@ static int		getline2(char **line, int fd)
 	return (1);
 }
 
-int				get_next_line(int const fd, char **line)
+int				get_next_line(int const fd, char **line, t_dict *env)
 {
 	int				res;
 	struct termios old_term;
