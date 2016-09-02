@@ -75,14 +75,16 @@ void			launch_exec(t_cmd *cmd, t_dict **dicts, char **env)
 
 void			display_prompt(t_dict *dictenv)
 {
-	char *prompt;
+	//use env?
+	/* char *prompt; */
 
-	prompt = dict_search(dictenv, "PWD");
-	prompt = (dict_search(dictenv, "PWD") ? prompt : "21sh");
-	ft_putstr("\x1B[33m");
-	ft_putstr(prompt);
-	ft_putstr("$> ");
-	ft_putstr("\033[0m");
+	(void)dictenv;
+	/* prompt = dict_search(dictenv, "PWD"); */
+	/* prompt = (dict_search(dictenv, "PWD") ? prompt : "21sh"); */
+	/* ft_putstr("\x1B[33m"); */
+	/* ft_putstr(prompt); */
+	ft_putstr("21sh> ");
+	/* ft_putstr("\033[0m"); */
 }
 
 void			interpret_command(t_dict **dicts, t_cmd *cmd)

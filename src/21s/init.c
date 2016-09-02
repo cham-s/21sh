@@ -14,13 +14,15 @@
 
 void	init_line(t_line *l, t_dict *env)
 {
+	//use env?
+	(void)env;
 	l->line = NULL;
 	l->buffer = ft_strdup("");
 	l->tmp = NULL;
 	l->position = 0;
 	l->size = 0;
 	l->key = 0;
-	l->start = ft_strlen(dict_search(env, "PWD") + 3); // + '$> '
+	l->start = ft_strlen("21sh> "); // + '$> '
 	l->end = l->start;
 }
 

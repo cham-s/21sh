@@ -11,10 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <sys/types.h>
 #include <fcntl.h>
-#include <sys/uio.h>
-#include <unistd.h>
 #include "21sh.h"
 #include "dict.h"
 #include "get_next_line.h"

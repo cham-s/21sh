@@ -30,16 +30,27 @@ static int		getline2(char **line, int fd, t_dict *env)
 			// handle special key with termcap
 			if (l.key == K_ENT)
 				is_running = 0;
-			else if (l.key == K_LEFT)
+			else if (l.key == K_LEFT && l.end > l.start)
+			{
+				--l.end;
+				--l.position;
 				ft_putstr(tgetstr("le", NULL));
+			}
 			else if (l.key == K_RIGHT)
+			{
+				++l.end;
+				++l.position;
 				ft_putstr(tgetstr("nd", NULL));
+			}
 		}
 		else
 		{
 			buf[ret] = '\0';
 			ft_putstr(buf);
 			l.buffer = ft_strjoinfree(l.buffer, buf);
+			++l.size;
+			++l.position;
+			++l.end;
 		}
 	}
 	ft_putendl("");
