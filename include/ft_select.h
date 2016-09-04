@@ -26,6 +26,7 @@
 # include "dict.h"
 # define MAX_KEY_LENGTH 5
 # define BUFF_SIZE	5
+# define START 6
 
 # define K_UP		4283163
 # define K_DOWN		4348699
@@ -42,7 +43,6 @@
 # define K_D		'd'
 # define K_X		'x'
 
-# define START		2
 # define SPACE		3
 # define PAD		4
 
@@ -67,7 +67,7 @@ typedef struct		s_line
 	char			*line;
 	char			*buffer;
 	char			*tmp;
-	int				position;
+	size_t			position;
 	size_t			start;
 	size_t			end;
 	size_t			size;

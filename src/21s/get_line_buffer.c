@@ -46,11 +46,24 @@ static int		getline2(char **line, int fd, t_dict *env)
 		else
 		{
 			buf[ret] = '\0';
-			ft_putstr(buf);
-			l.buffer = ft_strjoinfree(l.buffer, buf);
-			++l.size;
-			++l.position;
-			++l.end;
+			if (l.position - START < l.end)
+			{
+				char *end = ft_strdup(l.buffer + l.position);
+				char *start = ft_strsub(l.buffer, 0, l.position);
+				char *start_new = ft_strjoinfree(start, buf);
+				l.buffer = ft_strjoinfree(start_new, end); 
+				l.end = ft_strlen(l.buffer);
+			}
+			else
+			{
+				l.buffer = ft_strjoinfree(l.buffer, buf);
+				++l.size;
+				++l.position;
+				++l.end;
+			}
+			ft_putendl(l.buffer);
+			ft_putnbr(l.position);
+			ft_putendl("");
 		}
 	}
 	ft_putendl("");

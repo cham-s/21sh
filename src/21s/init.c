@@ -19,11 +19,11 @@ void	init_line(t_line *l, t_dict *env)
 	l->line = NULL;
 	l->buffer = ft_strdup("");
 	l->tmp = NULL;
-	l->position = 0;
 	l->size = 0;
 	l->key = 0;
 	l->start = ft_strlen("21sh> "); // + '$> '
 	l->end = l->start;
+	l->position = l->end;
 }
 
 int		init_binaries(t_dict **binaries)
