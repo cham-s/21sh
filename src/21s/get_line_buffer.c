@@ -36,7 +36,7 @@ static int		getline2(char **line, int fd, t_dict *env)
 				--l.position;
 				ft_putstr(tgetstr("le", NULL));
 			}
-			else if (l.key == K_RIGHT)
+			else if (l.key == K_RIGHT && l.buffer[l.position])
 			{
 				++l.end;
 				++l.position;
@@ -46,25 +46,29 @@ static int		getline2(char **line, int fd, t_dict *env)
 		else
 		{
 			buf[ret] = '\0';
-			if (l.position - START < l.end)
-			{
-				char *end = ft_strdup(l.buffer + l.position);
-				char *start = ft_strsub(l.buffer, 0, l.position);
-				char *start_new = ft_strjoinfree(start, buf);
-				l.buffer = ft_strjoinfree(start_new, end); 
-				l.end = ft_strlen(l.buffer);
-			}
-			else
-			{
-				l.buffer = ft_strjoinfree(l.buffer, buf);
-				++l.size;
-				++l.position;
-				++l.end;
-			}
-			ft_putendl(l.buffer);
-			ft_putnbr(l.position);
-			ft_putendl("");
+			/* if (l.position - START < l.end) */
+			/* { */
+			/* 	char *end = ft_strdup(l.buffer + l.position); */
+			/* 	char *start = ft_strsub(l.buffer, 0, l.position); */
+			/* 	char *start_new = ft_strjoinfree(start, buf); */
+			/* 	l.buffer = ft_strjoinfree(start_new, end);  */
+			/* 	l.end = ft_strlen(l.buffer); */
+			/* } */
+			/* else */
+			/* { */
+			/* 	l.buffer = ft_strjoinfree(l.buffer, buf); */
+			/* 	++l.size; */
+			/* 	++l.position; */
+			/* 	++l.end; */
+			/* } */
+			l.buffer = ft_strjoinfree(l.buffer, buf);
+			++l.size;
+			++l.position;
+			++l.end;
+			ft_putstr(buf);
 		}
+		/* ft_putendl(""); */
+		/* ft_putnbr(l.position); */
 	}
 	ft_putendl("");
 	*line = ft_strdup(l.buffer);
