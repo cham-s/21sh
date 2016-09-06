@@ -49,7 +49,7 @@ static int		getline2(char **line, int fd, t_dict *env)
 					l.buffer = ft_strsub(l.buffer, 0, l.position);
 					free(tmp);
 				}
-				else 
+				else
 				{
 					char *end = ft_strdup(tmpos);
 					char *start  = ft_strsub(l.buffer, 0, l.position);
@@ -68,14 +68,23 @@ static int		getline2(char **line, int fd, t_dict *env)
 			buf[ret] = '\0';
 			if (l.buffer[l.position])
 			{
+				size_t i = l.position;
+				size_t tmp = l.position;
+				while (i--)
+				{
+					ft_putstr(tgetstr("le", NULL));
+					ft_putstr(tgetstr("dc", NULL));
+				}
 				char *end = ft_strdup(l.buffer + l.position);
 				char *start = ft_strsub(l.buffer, 0, l.position);
 				char *start_new = ft_strjoinfree(start, buf);
 				l.buffer = ft_strjoinfree(start_new, end);
 				l.end = ft_strlen(l.buffer);
-				//ft_putendl(start_new);
-				ft_putstr(buf);
-				++l.position;
+				ft_putstr(l.buffer);
+				l.position = ft_strlen(l.buffer);
+				i = l.position - tmp;
+				while (i--)
+					ft_putstr(tgetstr("le", NULL));
 			}
 			else
 			{
@@ -86,8 +95,6 @@ static int		getline2(char **line, int fd, t_dict *env)
 				ft_putstr(buf);
 			}
 		}
-		/* ft_putendl(""); */
-		/* ft_putnbr(l.position); */
 	}
 	ft_putendl("");
 	*line = ft_strdup(l.buffer);
