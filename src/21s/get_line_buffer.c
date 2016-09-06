@@ -69,7 +69,7 @@ static int		getline2(char **line, int fd, t_dict *env)
 			if (l.buffer[l.position])
 			{
 				size_t i = l.position;
-				size_t tmp = l.position;
+				/* size_t tmp = l.position; */
 				while (i--)
 				{
 					ft_putstr(tgetstr("le", NULL));
@@ -81,8 +81,8 @@ static int		getline2(char **line, int fd, t_dict *env)
 				l.buffer = ft_strjoinfree(start_new, end);
 				l.end = ft_strlen(l.buffer);
 				ft_putstr(l.buffer);
-				l.position = ft_strlen(l.buffer);
-				i = l.position - tmp;
+				i = ft_strlen(l.buffer) - (l.position + 1);
+				++l.position;
 				while (i--)
 					ft_putstr(tgetstr("le", NULL));
 			}
