@@ -53,6 +53,7 @@ static int		getline2(char **line, int fd, t_dict *env)
 				char *start_new = ft_strjoinfree(start, buf);
 				l.buffer = ft_strjoinfree(start_new, end); 
 				l.end = ft_strlen(l.buffer);
+				ft_putstr(buf);
 			}
 			else
 			{
@@ -60,8 +61,8 @@ static int		getline2(char **line, int fd, t_dict *env)
 				++l.size;
 				++l.position;
 				++l.end;
+				ft_putstr(buf);
 			}
-			ft_putstr(buf);
 		}
 		/* ft_putendl(""); */
 		/* ft_putnbr(l.position); */

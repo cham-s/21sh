@@ -12,6 +12,7 @@
 
 #include "21sh.h"
 
+// add to libft
 void	destroy_array_dict(t_dict **dicts, int dict_len)
 {
 	int i;

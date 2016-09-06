@@ -81,10 +81,10 @@ void			display_prompt(t_dict *dictenv)
 	(void)dictenv;
 	/* prompt = dict_search(dictenv, "PWD"); */
 	/* prompt = (dict_search(dictenv, "PWD") ? prompt : "21sh"); */
-	/* ft_putstr("\x1B[33m"); */
+	ft_putstr("\x1B[33m");
 	/* ft_putstr(prompt); */
 	ft_putstr("21sh> ");
-	/* ft_putstr("\033[0m"); */
+	ft_putstr("\033[0m");
 }
 
 void			interpret_command(t_dict **dicts, t_cmd *cmd)
