@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 21:30:06 by cattouma          #+#    #+#             */
-/*   Updated: 2016/07/10 19:28:57 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/09/07 12:51:57 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ typedef struct		s_line_info
 
 typedef struct		s_history
 {
-	char			*line;
-	struct s_entry	*next;
-	struct s_entry	*prev;
+	char				*line;
+	struct s_history	*next;
+	struct s_history	*prev;
 }					t_history;
 
 typedef struct		s_hcontrol
@@ -56,7 +56,7 @@ typedef struct		s_hcontrol
 	t_history		*head;
 	t_history		*list;
 	int				max;
-}					t_hcontrol
+}					t_hcontrol;
 
 t_dict				*envcpy(char **env);
 void				print_env(char **env);
@@ -88,5 +88,11 @@ int					replace_s(char **s, t_dict **dicts, char **key, int s_pos);
 int					replace_all(char **s, t_dict **dicts, char **key);
 void				clean_malloc(char *line, char **big_line, char **env);
 int					is_alphanumeric(const char *s);
+
+
+int					get_line_buffer(int const fd, char **line, t_dict *env, t_hcontrol *c);
+void				init_history(t_hcontrol *c);
+void				add_history(t_hcontrol *c, t_history *new);
+t_history			*new_history(char *str);
 
 #endif

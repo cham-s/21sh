@@ -1,10 +1,10 @@
 #include "21sh.h"
 
-t_history	*newentry(char *str)
+t_history	*new_history(char *str)
 {
 	t_history *new;
 
-	new = (t_entry *)ft_memalloc(sizeof(*new));
+	new = (t_history *)ft_memalloc(sizeof(*new));
 	if (!new)
 		return (NULL);
 	new->next = NULL;
@@ -26,15 +26,18 @@ void	add_history(t_hcontrol *c, t_history *new)
 	t_history		*slow;
 
 	tmp = c->list;
+	slow = NULL;
 	if (!tmp)
 		c->list = new;
 	else
 	{
 		while (tmp->next)
 		{
+			slow = tmp;
 			tmp = tmp->next;
 		}
 		tmp->next = new;
+		tmp->prev = slow;
 		++c->max;
 	}
 }

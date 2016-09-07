@@ -9,7 +9,7 @@ static int		is_special_key(unsigned int key)
 }
 
 // if potential leaks probably here
-static int		getline2(char **line, int fd, t_dict *env)
+static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c)
 {
 	int				ret;
 	char			buf[BUFF_SIZE + 1];
@@ -30,6 +30,23 @@ static int		getline2(char **line, int fd, t_dict *env)
 			// handle special key with termcap
 			if (l.key == K_ENT)
 				is_running = 0;
+			else if (l.key == K_UP)
+			{
+				if (c->list)
+				{
+					// free here
+					l.end = ft_strlen(l.buffer);
+					while (l.end--)
+					{
+						ft_putstr(tgetstr("le", NULL));
+						ft_putstr(tgetstr("dc", NULL));
+					}
+					add_history(c, new_history(l.buffer));
+					l.buffer = ft_strdup(c->list->line);
+					c->list = c->list->next;
+					ft_putstr(l.buffer);
+				}
+			}
 			else if (l.key == K_LEFT && l.position > 0)
 			{
 				--l.end;
@@ -98,6 +115,7 @@ static int		getline2(char **line, int fd, t_dict *env)
 	}
 	ft_putendl("");
 	*line = ft_strdup(l.buffer);
+	add_history(c, new_history(l.buffer));
 	l.tmp = l.buffer;
 	ft_strdel(&l.tmp);
 	if (ret == 0 && *line[0] == '\0')
@@ -105,7 +123,7 @@ static int		getline2(char **line, int fd, t_dict *env)
 	return (1);
 }
 
-int				get_line_buffer(int const fd, char **line, t_dict *env)
+int				get_line_buffer(int const fd, char **line, t_dict *env, t_hcontrol *c)
 {
 	int				res;
 	struct termios old_term;
@@ -116,7 +134,7 @@ int				get_line_buffer(int const fd, char **line, t_dict *env)
 	{
 		init_term_data(fd);
 		init_raw_mode(&old_term);
-		res = getline2(line, fd, env);
+		res = getline2(line, fd, env, c);
 		reset_default_mode(&old_term);
 		return (res);
 	}

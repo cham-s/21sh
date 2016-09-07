@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 10:32:41 by cattouma          #+#    #+#             */
-/*   Updated: 2016/07/10 19:34:54 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/09/07 12:47:44 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,13 @@ void			interpret_command(t_dict **dicts, t_cmd *cmd)
 	t_line_info	li;
 	char		**env;
 	int			i;
+	t_hcontrol	c;
 
+	init_history(&c);
 	while (1)
 	{
 		display_prompt(dicts[ENV]);
-		if (get_line_buffer(0, &li.line, dicts[ENV]) == 0)
+		if (get_line_buffer(0, &li.line, dicts[ENV], &c) == 0)
 			exit(EXIT_FAILURE);
 		env = dict_to_tab(dicts[ENV]); /* transform env dict into tab */
 		li.big_line = ft_strsplit(li.line, ';');

@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:39 by cattouma          #+#    #+#             */
-/*   Updated: 2016/06/01 16:01:04 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/09/07 12:46:27 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ typedef	struct		s_entlist
 }					t_entlist;
 
 
-int					get_line_buffer(int const fd, char **line, t_dict *env);
 
 t_entlist			*ret_entlist(void);
 void				sig_handler(int sig);

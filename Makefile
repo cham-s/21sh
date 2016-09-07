@@ -6,7 +6,7 @@
 #    By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/02 16:30:48 by cattouma          #+#    #+#              #
-#    Updated: 2016/07/10 19:31:46 by cattouma         ###   ########.fr        #
+#    Updated: 2016/09/07 12:41:06 by cattouma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ OBJS 		= $(OBJDIR)/main.o\
 			  $(OBJDIR)/attr.o\
 			  $(OBJDIR)/init_term.o\
 			  $(OBJDIR)/get_line_buffer.o\
+			  $(OBJDIR)/history.o\
 
 .PHONY: all clean fclean re
 
