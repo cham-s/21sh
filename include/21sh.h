@@ -27,6 +27,7 @@
 # define ENV		0
 # define TOKENS		1
 # define BIN		2
+# define MAX_HISTORY 10
 
 typedef struct		s_cmd
 {
@@ -41,6 +42,21 @@ typedef struct		s_line_info
 	char	**big_line;
 	char	**split_line;
 }					t_line_info;
+
+
+typedef struct		s_history
+{
+	char			*line;
+	struct s_entry	*next;
+	struct s_entry	*prev;
+}					t_history;
+
+typedef struct		s_hcontrol
+{
+	t_history		*head;
+	t_history		*list;
+	int				max;
+}					t_hcontrol
 
 t_dict				*envcpy(char **env);
 void				print_env(char **env);

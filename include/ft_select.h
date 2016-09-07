@@ -74,7 +74,6 @@ typedef struct		s_line
 	unsigned int	key;
 }					t_line;
 
-
 typedef struct		s_entry
 {
 	char			*line;
