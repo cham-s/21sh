@@ -27,8 +27,8 @@ void	add_history(t_hcontrol *c, t_history *new)
 	tmp = c->head;
 	if (!tmp)
 	{
-		new->next = c->head;
 		c->head = new;
+		c->list = c->head;
 	}
 	else
 	{

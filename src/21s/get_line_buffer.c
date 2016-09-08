@@ -41,9 +41,25 @@ static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c)
 						ft_putstr(tgetstr("le", NULL));
 						ft_putstr(tgetstr("dc", NULL));
 					}
-					add_history(c, new_history(l.buffer));
 					l.buffer = ft_strdup(c->list->line);
 					c->list = c->list->next;
+					ft_putstr(l.buffer);
+					l.position = ft_strlen(l.buffer);
+				}
+			}
+			else if (l.key == K_DOWN)
+			{
+				if (c->list)
+				{
+					// free here
+					l.end = ft_strlen(l.buffer);
+					while (l.end--)
+					{
+						ft_putstr(tgetstr("le", NULL));
+						ft_putstr(tgetstr("dc", NULL));
+					}
+					l.buffer = ft_strdup(c->list->line);
+					c->list = c->list->prev;
 					ft_putstr(l.buffer);
 					l.position = ft_strlen(l.buffer);
 				}
@@ -117,6 +133,8 @@ static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c)
 	ft_putendl("");
 	*line = ft_strdup(l.buffer);
 	add_history(c, new_history(l.buffer));
+	// reset history
+	c->list = c->head;
 	l.tmp = l.buffer;
 	ft_strdel(&l.tmp);
 	if (ret == 0 && *line[0] == '\0')
