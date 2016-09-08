@@ -45,7 +45,7 @@ static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c)
 					l.buffer = ft_strdup(c->list->line);
 					c->list = c->list->next;
 					ft_putstr(l.buffer);
-					l.position = ft_strlen(l.buffer) - 1;
+					l.position = ft_strlen(l.buffer);
 				}
 			}
 			else if (l.key == K_LEFT && l.position > 0)

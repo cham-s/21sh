@@ -23,22 +23,18 @@ void	init_history(t_hcontrol *c)
 void	add_history(t_hcontrol *c, t_history *new)
 {
 	t_history		*tmp;
-	t_history		*slow;
 
-	tmp = c->list;
-	slow = NULL;
+	tmp = c->head;
 	if (!tmp)
-		c->list = new;
+	{
+		new->next = c->head;
+		c->head = new;
+	}
 	else
 	{
-		while (tmp->next)
-		{
-			slow = tmp;
-			tmp = tmp->next;
-		}
-		tmp->next = new;
-		tmp->prev = slow;
-		++c->max;
+		new->next = c->head;
+		c->head = new;
+		new->next->prev = new;
 	}
 }
 
