@@ -3,7 +3,8 @@
 static int		is_special_key(unsigned int key)
 {
 	if (key == K_UP || key == K_DOWN || key == K_LEFT || key == K_RIGHT ||
-		key == K_ESC || key == K_ENT || key == K_DEL || key == K_BKSPC || key == K_TAB)
+		key == K_ESC || key == K_ENT || key == K_DEL || key == K_BKSPC ||
+		key == K_TAB || key == K_ALT_L || key == K_ALT_R)
 		return 1;
 	return 0;
 }
@@ -42,7 +43,8 @@ static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c)
 						ft_putstr(tgetstr("dc", NULL));
 					}
 					l.buffer = ft_strdup(c->list->line);
-					c->list = c->list->next;
+					if (c->list->next)
+						c->list = c->list->next;
 					ft_putstr(l.buffer);
 					l.position = ft_strlen(l.buffer);
 				}
@@ -59,7 +61,8 @@ static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c)
 						ft_putstr(tgetstr("dc", NULL));
 					}
 					l.buffer = ft_strdup(c->list->line);
-					c->list = c->list->prev;
+					if (c->list->prev)
+						c->list = c->list->prev;
 					ft_putstr(l.buffer);
 					l.position = ft_strlen(l.buffer);
 				}
@@ -69,6 +72,43 @@ static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c)
 				--l.end;
 				--l.position;
 				ft_putstr(tgetstr("le", NULL));
+			}
+			else if (l.key == K_ALT_L && l.position > 0)
+			{
+				ft_putstr(tgetstr("le", NULL));
+				--l.position;
+				while (l.buffer[l.position] == ' ')
+				{
+					ft_putstr(tgetstr("le", NULL));
+					--l.position;
+				}
+				while(l.buffer[l.position] != ' ' && l.position > 0)
+				{
+					ft_putstr(tgetstr("le", NULL));
+					--l.position;
+				}
+				if (l.position > 1)
+				{
+					ft_putstr(tgetstr("nd", NULL));
+					++l.position;
+				}
+			}
+			else if (l.key == K_ALT_R && l.buffer[l.position])
+			{
+				ft_putstr(tgetstr("nd", NULL));
+				++l.position;
+				while (l.buffer[l.position] == ' ')
+				{
+					ft_putstr(tgetstr("nd", NULL));
+					++l.position;
+				}
+				while(l.buffer[l.position] != ' ' && l.buffer[l.position])
+				{
+					ft_putstr(tgetstr("nd", NULL));
+					++l.position;
+				}
+				/* ft_putstr(tgetstr("nd", NULL)); */
+				/* ++l.position; */
 			}
 			else if (l.key == K_BKSPC && l.position > 0)
 			{

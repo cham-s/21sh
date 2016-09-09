@@ -32,6 +32,9 @@
 # define K_DOWN		4348699
 # define K_LEFT		4479771
 # define K_RIGHT	4414235
+# define K_ALT_R  	1130044187 
+# define K_ALT_L    1146821403
+# define K_RIGHT	4414235
 # define K_ESC		27
 # define K_ENT		10
 # define K_TAB		9
@@ -42,6 +45,7 @@
 # define K_R		'r'
 # define K_D		'd'
 # define K_X		'x'
+
 
 # define SPACE		3
 # define PAD		4
