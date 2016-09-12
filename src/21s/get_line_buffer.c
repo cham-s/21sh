@@ -73,11 +73,31 @@ static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c)
 				--l.position;
 				ft_putstr(tgetstr("le", NULL));
 			}
+			/* else if (l.key == K_ALT_L && l.position > 0) */
+			/* { */
+			/* 	ft_putstr(tgetstr("le", NULL)); */
+			/* 	--l.position; */
+			/* 	while (l.buffer[l.position] == ' ') */
+			/* 	{ */
+			/* 		ft_putstr(tgetstr("le", NULL)); */
+			/* 		--l.position; */
+			/* 	} */
+			/* 	while(l.buffer[l.position] != ' ' && l.position > 0) */
+			/* 	{ */
+			/* 		ft_putstr(tgetstr("le", NULL)); */
+			/* 		--l.position; */
+			/* 	} */
+			/* 	if (l.position > 1) */
+			/* 	{ */
+			/* 		ft_putstr(tgetstr("nd", NULL)); */
+			/* 		++l.position; */
+			/* 	} */
+			/* } */
 			else if (l.key == K_ALT_L && l.position > 0)
 			{
 				ft_putstr(tgetstr("le", NULL));
 				--l.position;
-				while (l.buffer[l.position] == ' ')
+				while (l.buffer[l.position] == ' ' && l.position > 0)
 				{
 					ft_putstr(tgetstr("le", NULL));
 					--l.position;
@@ -95,20 +115,22 @@ static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c)
 			}
 			else if (l.key == K_ALT_R && l.buffer[l.position])
 			{
-				ft_putstr(tgetstr("nd", NULL));
-				++l.position;
-				while (l.buffer[l.position] == ' ')
+				if (l.buffer[l.position] == ' ')
 				{
-					ft_putstr(tgetstr("nd", NULL));
-					++l.position;
+					while (l.buffer[l.position] == ' ' && l.buffer[l.position])
+					{
+						++l.position;
+						ft_putstr(tgetstr("nd", NULL));
+					}
 				}
-				while(l.buffer[l.position] != ' ' && l.buffer[l.position])
+				else
 				{
-					ft_putstr(tgetstr("nd", NULL));
-					++l.position;
+					while (l.buffer[l.position] != ' ' && l.buffer[l.position] != '\0')
+					{
+						++l.position;
+						ft_putstr(tgetstr("nd", NULL));
+					}
 				}
-				/* ft_putstr(tgetstr("nd", NULL)); */
-				/* ++l.position; */
 			}
 			else if (l.key == K_BKSPC && l.position > 0)
 			{
