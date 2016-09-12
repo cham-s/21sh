@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:39 by cattouma          #+#    #+#             */
-/*   Updated: 2016/09/07 12:46:27 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/09/12 17:59:53 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@
 # define K_DOWN		4348699
 # define K_LEFT		4479771
 # define K_RIGHT	4414235
+# define K_HOME		4741915
+# define K_END		4610843
 # define K_ALT_R  	1130044187 
 # define K_ALT_L    1146821403
-# define K_RIGHT	4414235
 # define K_ESC		27
 # define K_ENT		10
 # define K_TAB		9

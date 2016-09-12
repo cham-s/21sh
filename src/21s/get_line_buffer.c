@@ -4,7 +4,7 @@ static int		is_special_key(unsigned int key)
 {
 	if (key == K_UP || key == K_DOWN || key == K_LEFT || key == K_RIGHT ||
 		key == K_ESC || key == K_ENT || key == K_DEL || key == K_BKSPC ||
-		key == K_TAB || key == K_ALT_L || key == K_ALT_R)
+		key == K_TAB || key == K_ALT_L || key == K_ALT_R || key == K_HOME || key == K_END)
 		return 1;
 	return 0;
 }
@@ -122,6 +122,7 @@ static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c)
 			}
 			else if (l.key == K_BKSPC && l.position > 0)
 			{
+				// remove end?
 				char *tmpos = l.buffer + (l.position);
 				--l.end;
 				--l.position;
@@ -145,6 +146,22 @@ static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c)
 				++l.end;
 				++l.position;
 				ft_putstr(tgetstr("nd", NULL));
+			}
+			else if (l.key == K_HOME)
+			{
+				while (l.position > 0)
+				{
+					--l.position;
+					ft_putstr(tgetstr("le", NULL));
+				}
+			}
+			else if (l.key == K_END)
+			{
+				while (l.buffer[l.position])
+				{
+					++l.position;
+					ft_putstr(tgetstr("nd", NULL));
+				}
 			}
 		}
 		else
