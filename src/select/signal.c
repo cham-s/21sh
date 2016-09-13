@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 16:53:36 by cattouma          #+#    #+#             */
-/*   Updated: 2016/06/01 16:13:27 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/09/13 15:58:50 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,28 +33,30 @@ static void		sig_stp(t_entlist *l)
 	}
 }
 
-static void		sig_cont(t_entlist *l)
-{
-	ft_putstr_fd(tgetstr("vi", NULL), l->fd);
-	ft_putstr_fd(tgetstr("ti", NULL), l->fd);
-	signal(SIGTSTP, sig_handler);
-	init_raw_mode(&l->old_term);
-	draw(l);
-}
+/* static void		sig_cont(t_line *l) */
+/* { */
+/* 	ft_putstr(tgetstr("vi", NULL)); */
+/* 	ft_putstr(tgetstr("ti", NULL)); */
+/* 	signal(SIGTSTP, sig_handler); */
+/* 	init_raw_mode(&l->old_term); */
+/* 	draw(l); */
+/* } */
 
 void			sig_handler(int sig)
 {
-	t_entlist		*l;
+	t_line	*l;
 	struct winsize	w;
 
-	l = ret_entlist();
+	l = ret_line();
 	if (sig == SIGWINCH)
 	{
-		ioctl(l->fd, TIOCGWINSZ, &w);
+		if(ioctl(1, TIOCGWINSZ, &w) < 1)
+		{
+			ft_putendl(2, "Error using ioctl()");
+			exit(EXIT_FAILURE);
+		}
 		l->height = w.ws_row;
 		l->width = w.ws_col;
-		l->row = l->height - START - PAD;
-		l->col = l->width - SPACE * 2;
 		draw(l);
 	}
 	else if (sig == SIGTSTP)

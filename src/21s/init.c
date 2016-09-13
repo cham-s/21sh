@@ -6,15 +6,31 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/05 09:57:10 by cattouma          #+#    #+#             */
-/*   Updated: 2016/09/05 18:16:57 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/09/13 15:32:40 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "21sh.h"
 
+t_line	*ret_line(void)
+{
+	static t_line l;
+
+	return (&l);
+}
+
 void	init_line(t_line *l, t_dict *env)
 {
+	struct winsize	w;
+
 	//use env?
+	if (ioctl(1, TIOCGWINSZ, &w) < 1)
+	{
+		ft_putendl_fd(2, "error using ioctl()");
+		exit(EXIT_FAILURE);
+	}
+	l->term_height = w.ws_row;
+	l->term_width = w.ws_col;
 	(void)env;
 	l->line = NULL;
 	l->buffer = ft_strdup("");

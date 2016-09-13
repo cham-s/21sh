@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:39 by cattouma          #+#    #+#             */
-/*   Updated: 2016/09/12 17:59:53 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/09/13 15:14:21 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ typedef struct		s_line
 	size_t			end;
 	size_t			size;
 	unsigned int	key;
+	int				term_height;
+	int				term_width;
 }					t_line;
 
 typedef struct		s_entry

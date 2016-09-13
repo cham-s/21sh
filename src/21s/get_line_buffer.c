@@ -212,7 +212,7 @@ static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c)
 int				get_line_buffer(int const fd, char **line, t_dict *env, t_hcontrol *c)
 {
 	int				res;
-	struct termios old_term;
+	struct termios	old_term;
 
 	if (fd < 0 || !line)
 		return (-1);
