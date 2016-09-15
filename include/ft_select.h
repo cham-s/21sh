@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:39 by cattouma          #+#    #+#             */
-/*   Updated: 2016/09/13 15:14:21 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/09/15 15:13:09 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct		s_line
 	unsigned int	key;
 	int				term_height;
 	int				term_width;
+	struct termios	old_term;
 }					t_line;
 
 typedef struct		s_entry

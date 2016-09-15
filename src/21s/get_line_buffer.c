@@ -212,16 +212,15 @@ static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c)
 int				get_line_buffer(int const fd, char **line, t_dict *env, t_hcontrol *c)
 {
 	int				res;
-	struct termios	old_term;
 
 	if (fd < 0 || !line)
 		return (-1);
 	else
 	{
 		init_term_data(fd);
-		init_raw_mode(&old_term);
+		init_raw_mode(&c->old_term);
 		res = getline2(line, fd, env, c);
-		reset_default_mode(&old_term);
+		reset_default_mode(&c->old_term);
 		return (res);
 	}
 }

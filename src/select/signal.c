@@ -6,32 +6,32 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 16:53:36 by cattouma          #+#    #+#             */
-/*   Updated: 2016/09/13 15:58:50 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/09/15 15:53:08 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-static void		sig_stp(t_entlist *l)
-{
-	char	buff[2];
-
-	buff[0] = 032;
-	buff[1] = '\0';
-	if (isatty(1))
-	{
-		signal(SIGTSTP, SIG_DFL);
-		ft_putstr_fd(tgetstr("ve", NULL), l->fd);
-		ft_putstr_fd(tgetstr("te", NULL), l->fd);
-		ioctl(0, TIOCSTI, buff);
-		reset_default_mode(&l->old_term);
-	}
-	else
-	{
-		ft_putendl_fd("Not a terminal device", 2);
-		exit(EXIT_FAILURE);
-	}
-}
+/* static void		sig_stp(t_entlist *l) */
+/* { */
+/* 	char	buff[2]; */
+/*  */
+/* 	buff[0] = 032; */
+/* 	buff[1] = '\0'; */
+/* 	if (isatty(1)) */
+/* 	{ */
+/* 		signal(SIGTSTP, SIG_DFL); */
+/* 		ft_putstr_fd(tgetstr("ve", NULL), l->fd); */
+/* 		ft_putstr_fd(tgetstr("te", NULL), l->fd); */
+/* 		ioctl(0, TIOCSTI, buff); */
+/* 		reset_default_mode(&l->old_term); */
+/* 	} */
+/* 	else */
+/* 	{ */
+/* 		ft_putendl_fd("Not a terminal device", 2); */
+/* 		exit(EXIT_FAILURE); */
+/* 	} */
+/* } */
 
 /* static void		sig_cont(t_line *l) */
 /* { */
@@ -47,10 +47,10 @@ void			sig_handler(int sig)
 	t_line	*l;
 	struct winsize	w;
 
-	l = ret_line();
+	l = ret_line(l);
 	if (sig == SIGWINCH)
 	{
-		if(ioctl(1, TIOCGWINSZ, &w) < 1)
+		if(ioctl(1, TIOCGWINSZ, &w) < 0)
 		{
 			ft_putendl(2, "Error using ioctl()");
 			exit(EXIT_FAILURE);

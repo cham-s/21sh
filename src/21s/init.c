@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/05 09:57:10 by cattouma          #+#    #+#             */
-/*   Updated: 2016/09/13 15:32:40 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/09/15 15:42:57 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	init_line(t_line *l, t_dict *env)
 	struct winsize	w;
 
 	//use env?
-	if (ioctl(1, TIOCGWINSZ, &w) < 1)
+	if (ioctl(1, TIOCGWINSZ, &w) < 0)
 	{
-		ft_putendl_fd(2, "error using ioctl()");
+		ft_putendl_fd("error using ioctl()", 2);
 		exit(EXIT_FAILURE);
 	}
 	l->term_height = w.ws_row;
