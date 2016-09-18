@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:39 by cattouma          #+#    #+#             */
-/*   Updated: 2016/09/15 15:13:09 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/09/18 12:50:52 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ typedef	struct		s_entlist
 
 
 
-t_entlist			*ret_entlist(void);
+t_line				*ret_line(void);
 void				sig_handler(int sig);
 void				signals(void);
 void				init_raw_mode(struct termios *old);

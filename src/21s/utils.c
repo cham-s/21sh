@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/28 11:08:58 by cattouma          #+#    #+#             */
-/*   Updated: 2016/03/21 14:53:45 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/09/18 13:12:53 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,6 @@ void	ft_delsplit(char **split)
 		i++;
 	}
 	free(split);
-}
-
-void	sig_handler(int signal)
-{
-	if (signal == SIGINT)
-	{
-		ft_putchar('\n');
-		ft_putstr("21sh - Ctrl-c -> ");
-	}
 }
 
 void	clean_malloc(char *line, char **big_line, char **env)

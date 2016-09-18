@@ -6,7 +6,7 @@
 #    By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/02 16:30:48 by cattouma          #+#    #+#              #
-#    Updated: 2016/09/07 12:41:06 by cattouma         ###   ########.fr        #
+#    Updated: 2016/09/18 12:45:36 by cattouma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,10 +38,11 @@ OBJS 		= $(OBJDIR)/main.o\
 			  $(OBJDIR)/init_term.o\
 			  $(OBJDIR)/get_line_buffer.o\
 			  $(OBJDIR)/history.o\
+			  $(OBJDIR)/signal.o\
 
 .PHONY: all clean fclean re
 
-VPATH = src/21s:src/cd:src/dict:src/echo:src/term
+VPATH = src/21s:src/cd:src/dict:src/echo:src/term:src/select
 
 all: $(NAME)
 

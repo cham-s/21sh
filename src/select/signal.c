@@ -6,11 +6,11 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 16:53:36 by cattouma          #+#    #+#             */
-/*   Updated: 2016/09/15 15:53:08 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/09/18 13:21:22 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_select.h"
+#include "21sh.h" 
 
 /* static void		sig_stp(t_entlist *l) */
 /* { */
@@ -47,24 +47,28 @@ void			sig_handler(int sig)
 	t_line	*l;
 	struct winsize	w;
 
-	l = ret_line(l);
+	l = ret_line();
 	if (sig == SIGWINCH)
 	{
 		if(ioctl(1, TIOCGWINSZ, &w) < 0)
 		{
-			ft_putendl(2, "Error using ioctl()");
+			ft_putendl_fd("Error using ioctl()", 2);
 			exit(EXIT_FAILURE);
 		}
-		l->height = w.ws_row;
-		l->width = w.ws_col;
-		draw(l);
+		l->term_height = w.ws_row;
+		l->term_width = w.ws_col;
 	}
-	else if (sig == SIGTSTP)
-		sig_stp(l);
-	else if (sig == SIGCONT)
-		sig_cont(l);
-	else
-		quit(l);
+	else if (sig == SIGINT)
+	{
+		ft_putchar('\n');
+		ft_putstr("21sh - Ctrl-c -> ");
+	}
+	/* else if (sig == SIGTSTP) */
+	/* 	sig_stp(l); */
+	/* else if (sig == SIGCONT) */
+	/* 	sig_cont(l); */
+	/* else */
+	/* 	quit(l); */
 }
 
 void			signals(void)

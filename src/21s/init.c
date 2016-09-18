@@ -6,10 +6,11 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/05 09:57:10 by cattouma          #+#    #+#             */
-/*   Updated: 2016/09/15 15:42:57 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/09/18 12:54:40 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_select.h"
 #include "21sh.h"
 
 t_line	*ret_line(void)
@@ -37,7 +38,7 @@ void	init_line(t_line *l, t_dict *env)
 	l->tmp = NULL;
 	l->size = 0;
 	l->key = 0;
-	l->start = ft_strlen("21sh> "); // + '$> '
+	l->start = ft_strlen("21sh> ");
 	l->end = l->start;
 	l->position = 0;
 }

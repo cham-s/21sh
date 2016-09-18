@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/16 08:52:33 by cattouma          #+#    #+#             */
-/*   Updated: 2016/07/09 18:54:40 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/09/18 12:44:32 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		main(int ac, char **av, char **env)
 	init_tokens(&dicts[TOKENS]);
 	init_binaries(&dicts[BIN]);
 	dicts[ENV] = envcpy(env);
-	signal(SIGINT, sig_handler);
+	signals();
 	interpret_command(dicts, &cmd);
 	destroy_array_dict(dicts, DICT_COUNT);
 	cmd_free(&cmd);
