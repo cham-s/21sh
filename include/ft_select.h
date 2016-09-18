@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:39 by cattouma          #+#    #+#             */
-/*   Updated: 2016/09/18 12:50:52 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/09/18 16:20:24 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@
 # define K_END		4610843
 # define K_ALT_R  	1130044187 
 # define K_ALT_L    1146821403
+# define K_ALT_DOWN	1113266971 
+# define K_ALT_UP	1096489755 
 # define K_ESC		27
 # define K_ENT		10
 # define K_TAB		9
@@ -46,7 +48,6 @@
 # define K_R		'r'
 # define K_D		'd'
 # define K_X		'x'
-
 
 # define SPACE		3
 # define PAD		4
@@ -79,6 +80,8 @@ typedef struct		s_line
 	unsigned int	key;
 	int				term_height;
 	int				term_width;
+	int				level;
+	int				level_count;
 	struct termios	old_term;
 }					t_line;
 

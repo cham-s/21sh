@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 16:53:36 by cattouma          #+#    #+#             */
-/*   Updated: 2016/09/18 13:21:22 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/09/18 13:29:44 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,13 @@ void			sig_handler(int sig)
 		l->term_height = w.ws_row;
 		l->term_width = w.ws_col;
 	}
+	// fix double output when usiing cat.
 	else if (sig == SIGINT)
 	{
 		ft_putchar('\n');
-		ft_putstr("21sh - Ctrl-c -> ");
+		ft_putstr("\x1B[33m");
+		ft_putstr("21sh> ");
+		ft_putstr("\033[0m");
 	}
 	/* else if (sig == SIGTSTP) */
 	/* 	sig_stp(l); */

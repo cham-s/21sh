@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/05 09:57:10 by cattouma          #+#    #+#             */
-/*   Updated: 2016/09/18 12:54:40 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/09/18 16:22:26 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	init_line(t_line *l, t_dict *env)
 	l->start = ft_strlen("21sh> ");
 	l->end = l->start;
 	l->position = 0;
+	l->level = 1;
+	l->level_count = 1;
 }
 
 int		init_binaries(t_dict **binaries)

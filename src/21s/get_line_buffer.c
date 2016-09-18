@@ -4,7 +4,8 @@ static int		is_special_key(unsigned int key)
 {
 	if (key == K_UP || key == K_DOWN || key == K_LEFT || key == K_RIGHT ||
 		key == K_ESC || key == K_ENT || key == K_DEL || key == K_BKSPC ||
-		key == K_TAB || key == K_ALT_L || key == K_ALT_R || key == K_HOME || key == K_END)
+		key == K_TAB || key == K_ALT_L || key == K_ALT_R || key == K_HOME ||
+	   	key == K_END || key == K_ALT_DOWN || key == K_ALT_UP)
 		return 1;
 	return 0;
 }
@@ -196,6 +197,11 @@ static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c)
 				++l->end;
 				ft_putstr(buf);
 			}
+		}
+		if ((int)ft_strlen(l->buffer) - 6 > l->term_width)
+		{
+			++l->level_count;
+			ft_putnbr(l->level_count);
 		}
 	}
 	ft_putendl("");
