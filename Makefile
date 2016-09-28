@@ -6,7 +6,7 @@
 #    By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/02 16:30:48 by cattouma          #+#    #+#              #
-#    Updated: 2016/09/18 12:45:36 by cattouma         ###   ########.fr        #
+#    Updated: 2016/09/28 11:53:28 by cattouma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,8 @@ OBJS 		= $(OBJDIR)/main.o\
 			  $(OBJDIR)/get_line_buffer.o\
 			  $(OBJDIR)/history.o\
 			  $(OBJDIR)/signal.o\
+			  $(OBJDIR)/line_stack.o\
+
 
 .PHONY: all clean fclean re
 

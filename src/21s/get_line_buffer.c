@@ -198,15 +198,16 @@ static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c)
 				ft_putstr(buf);
 			}
 		}
-		int buf_len = (int)ft_strlen(l->buffer);
-		//int width = l->term_width = l->term_width * l->level_count;
-		if (l->level_count == 1)
-			buf_len += 6;
-		if (buf_len == l->term_width * l->level_count)
-		{
-			++l->level_count;
-			ft_putnbr(l->level_count);
-		}
+		// ===> line level
+		/* int buf_len = (int)ft_strlen(l->buffer); */
+		/* // int width = l->term_width = l->term_width * l->level_count; */
+		/* if (l->level_count == 1) */
+		/* 	buf_len += 6; */
+		/* if (buf_len == l->term_width * l->level_count) */
+		/* { */
+		/* 	++l->level_count; */
+		/* 	ft_putnbr(l->level_count); */
+		/* } */
 	}
 	ft_putendl("");
 	*line = ft_strdup(l->buffer);

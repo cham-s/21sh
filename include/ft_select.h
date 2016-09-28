@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:39 by cattouma          #+#    #+#             */
-/*   Updated: 2016/09/18 16:20:24 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/09/28 14:59:38 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <unistd.h>
 # include "libft.h"
 # include "dict.h"
+
 # define MAX_KEY_LENGTH 5
 # define BUFF_SIZE	5
 # define START 6
@@ -34,10 +35,10 @@
 # define K_RIGHT	4414235
 # define K_HOME		4741915
 # define K_END		4610843
-# define K_ALT_R  	1130044187 
+# define K_ALT_R  	1130044187
 # define K_ALT_L    1146821403
-# define K_ALT_DOWN	1113266971 
-# define K_ALT_UP	1096489755 
+# define K_ALT_DOWN	1113266971
+# define K_ALT_UP	1096489755
 # define K_ESC		27
 # define K_ENT		10
 # define K_TAB		9
@@ -95,6 +96,14 @@ typedef struct		s_entry
 	struct s_entry	*prev;
 }					t_entry;
 
+typedef struct		s_line_stack
+{
+	char			*str;
+	int				size;
+	int				index;
+	char			**array;
+}					t_line_stack;
+
 typedef	struct		s_entlist
 {
 	t_entry			*head;
@@ -150,5 +159,14 @@ void				draw_title(t_entlist *l);
 void				draw_help(t_entlist *l);
 
 void				init_line(t_line *l, t_dict *env);
+
+/*
+ * stack implementation
+ */
+t_line_stack		*stack_create(void);
+t_line_stack		*init_stack(int size);
+void				stack_destroy(t_line_stack *stack);
+void				stack_grow(t_line_stack *stack, int growth_factor);
+void				push_stack(t_line_stack *stack, char *line);
 
 #endif

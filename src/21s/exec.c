@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 10:32:41 by cattouma          #+#    #+#             */
-/*   Updated: 2016/09/07 12:47:44 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/09/28 15:39:55 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,30 @@ void			interpret_command(t_dict **dicts, t_cmd *cmd)
 	char		**env;
 	int			i;
 	t_hcontrol	c;
+	t_line_stack *stack;
 
 	init_history(&c);
+	stack = stack_create();
+	push_stack(stack, "hello");
+	stack->index++;
+	push_stack(stack, "lohe");
+	stack->index++;
+	push_stack(stack, "lohe");
+	stack->index++;
+	push_stack(stack, "lohe");
+	stack->index++;
+	push_stack(stack, "lohe");
+	stack->index++;
+	push_stack(stack, "lohe");
+	stack->index++;
+	push_stack(stack, "lohe");
+	stack->index++;
+	push_stack(stack, "lohe");
+	stack->index++;
+	push_stack(stack, "bohe");
+	ft_putendl(stack->array[stack->index + 8]);
+	ft_putnbr(stack->index + 9);
+	exit(4);
 	while (1)
 	{
 		display_prompt(dicts[ENV]);
