@@ -40,7 +40,7 @@ void	stack_destroy(t_line_stack *stack)
 	free(stack);
 }
 
-void		stack_grow(t_line_stack *stack, int growth_factor, )
+void		stack_grow(t_line_stack *stack, int growth_factor, int index)
 {
 	t_line_stack	*new_stack;
 	t_line_stack	swap;
@@ -48,6 +48,7 @@ void		stack_grow(t_line_stack *stack, int growth_factor, )
 
 	i = 0;
 	new_stack = init_stack(stack->size * growth_factor);
+	new_stack->index = index;
 	if (!new_stack)
 	{
 		ft_putendl_fd("System does not have enough ressources", 2);

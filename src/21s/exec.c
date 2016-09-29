@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 10:32:41 by cattouma          #+#    #+#             */
-/*   Updated: 2016/09/28 15:39:55 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/09/29 15:50:00 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,24 @@ void			interpret_command(t_dict **dicts, t_cmd *cmd)
 	push_stack(stack, "lohe");
 	stack->index++;
 	push_stack(stack, "bohe");
-	ft_putendl(stack->array[stack->index + 8]);
-	ft_putnbr(stack->index + 9);
+	stack->index++;
+	push_stack(stack, "bohe");
+	stack->index++;
+	push_stack(stack, "bohe");
+	stack->index++;
+	push_stack(stack, "bohe");
+	stack->index++;
+	push_stack(stack, "bohe");
+	stack->index++;
+	push_stack(stack, "bohe");
+	stack->index++;
+	push_stack(stack, "bohe");
+	stack->index++;
+	push_stack(stack, "testonotest");
+	stack->index++;
+	push_stack(stack, "fdsfdfdsfdsf");
+	ft_putendl(stack->array[stack->index]);
+	ft_putnbr(stack->index);
 	exit(4);
 	while (1)
 	{

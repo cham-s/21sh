@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:39 by cattouma          #+#    #+#             */
-/*   Updated: 2016/09/28 14:59:38 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/09/29 15:30:02 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ void				init_line(t_line *l, t_dict *env);
 t_line_stack		*stack_create(void);
 t_line_stack		*init_stack(int size);
 void				stack_destroy(t_line_stack *stack);
-void				stack_grow(t_line_stack *stack, int growth_factor);
+void				stack_grow(t_line_stack *stack, int growth_factor, int index);
 void				push_stack(t_line_stack *stack, char *line);
 
 #endif
