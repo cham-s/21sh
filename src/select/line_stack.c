@@ -16,12 +16,14 @@ t_line_stack	*init_stack(int size)
 	if (!stack)
 		return (NULL);
 	stack->size = size;
-	stack->array = (char **)ft_memalloc(sizeof(char *) * stack->size); 
+	stack->array = (char **)ft_memalloc(sizeof(char *) * stack->size);
 	while (i < size)
 	{
 		stack->array[i] = NULL;
 		i++;
 	}
+	stack->index = 0;
+	stack->h_index = 0;
 	return (stack);
 }
 
@@ -30,7 +32,7 @@ void	stack_destroy(t_line_stack *stack)
 	int		i;
 
 	i = 0;
-	while (stack->array[i])
+	while (i < stack->size)
 	{
 		free(stack->array[i]);
 		stack->array[i] = NULL;

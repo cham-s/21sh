@@ -11,7 +11,7 @@ static int		is_special_key(unsigned int key)
 }
 
 // if potential leaks probably here
-static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c)
+static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c, t_line_stack *stack)
 {
 	int				ret;
 	char			buf[BUFF_SIZE + 1];
@@ -212,6 +212,9 @@ static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c)
 	ft_putendl("");
 	*line = ft_strdup(l->buffer);
 	add_history(c, new_history(l->buffer));
+	push_stack(stack, l->buffer);
+	ft_putendl(stack->array[stack->index]);
+	stack->index++;
 	// reset history
 	c->list = c->head;
 	l->tmp = l->buffer;
@@ -221,7 +224,7 @@ static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c)
 	return (1);
 }
 
-int				get_line_buffer(int const fd, char **line, t_dict *env, t_hcontrol *c)
+int				get_line_buffer(int const fd, char **line, t_dict *env, t_hcontrol *c, t_line_stack *stack)
 {
 	int				res;
 
@@ -231,7 +234,7 @@ int				get_line_buffer(int const fd, char **line, t_dict *env, t_hcontrol *c)
 	{
 		init_term_data(fd);
 		init_raw_mode(&c->old_term);
-		res = getline2(line, fd, env, c);
+		res = getline2(line, fd, env, c, stack);
 		reset_default_mode(&c->old_term);
 		return (res);
 	}

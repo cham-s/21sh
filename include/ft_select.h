@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:39 by cattouma          #+#    #+#             */
-/*   Updated: 2016/09/29 15:30:02 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/10/01 15:41:56 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct		s_line_stack
 	char			*str;
 	int				size;
 	int				index;
+	int				h_index;
 	char			**array;
 }					t_line_stack;
 
@@ -122,8 +123,6 @@ typedef	struct		s_entlist
 	int				times;
 	struct termios	old_term;
 }					t_entlist;
-
-
 
 t_line				*ret_line(void);
 void				sig_handler(int sig);

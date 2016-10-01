@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 21:30:06 by cattouma          #+#    #+#             */
-/*   Updated: 2016/09/28 14:59:29 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/10/01 15:36:04 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void				clean_malloc(char *line, char **big_line, char **env);
 int					is_alphanumeric(const char *s);
 
 
-int					get_line_buffer(int const fd, char **line, t_dict *env, t_hcontrol *c);
+int					get_line_buffer(int const fd, char **line, t_dict *env, t_hcontrol *c, t_line_stack *stack);
 void				init_history(t_hcontrol *c);
 void				add_history(t_hcontrol *c, t_history *new);
 t_history			*new_history(char *str);

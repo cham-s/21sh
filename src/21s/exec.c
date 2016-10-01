@@ -6,7 +6,7 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 10:32:41 by cattouma          #+#    #+#             */
-/*   Updated: 2016/09/29 15:50:00 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/10/01 15:34:06 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,46 +97,10 @@ void			interpret_command(t_dict **dicts, t_cmd *cmd)
 
 	init_history(&c);
 	stack = stack_create();
-	push_stack(stack, "hello");
-	stack->index++;
-	push_stack(stack, "lohe");
-	stack->index++;
-	push_stack(stack, "lohe");
-	stack->index++;
-	push_stack(stack, "lohe");
-	stack->index++;
-	push_stack(stack, "lohe");
-	stack->index++;
-	push_stack(stack, "lohe");
-	stack->index++;
-	push_stack(stack, "lohe");
-	stack->index++;
-	push_stack(stack, "lohe");
-	stack->index++;
-	push_stack(stack, "bohe");
-	stack->index++;
-	push_stack(stack, "bohe");
-	stack->index++;
-	push_stack(stack, "bohe");
-	stack->index++;
-	push_stack(stack, "bohe");
-	stack->index++;
-	push_stack(stack, "bohe");
-	stack->index++;
-	push_stack(stack, "bohe");
-	stack->index++;
-	push_stack(stack, "bohe");
-	stack->index++;
-	push_stack(stack, "testonotest");
-	stack->index++;
-	push_stack(stack, "fdsfdfdsfdsf");
-	ft_putendl(stack->array[stack->index]);
-	ft_putnbr(stack->index);
-	exit(4);
 	while (1)
 	{
 		display_prompt(dicts[ENV]);
-		if (get_line_buffer(0, &li.line, dicts[ENV], &c) == 0)
+		if (get_line_buffer(0, &li.line, dicts[ENV], &c, stack) == 0)
 			exit(EXIT_FAILURE);
 		env = dict_to_tab(dicts[ENV]); /* transform env dict into tab */
 		li.big_line = ft_strsplit(li.line, ';');
