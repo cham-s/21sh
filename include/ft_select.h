@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:39 by cattouma          #+#    #+#             */
-/*   Updated: 2016/10/01 15:41:56 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/10/03 21:51:24 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,8 @@ typedef	struct		s_entlist
 	int				times;
 	struct termios	old_term;
 }					t_entlist;
+
+/*ft_select */
 
 t_line				*ret_line(void);
 void				sig_handler(int sig);
