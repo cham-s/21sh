@@ -151,6 +151,30 @@ void			foreward_history(t_line *l, t_hcontrol *c)
 	}
 }
 
+void			edit_buffer(t_line *l, char	buf[BUFF_SIZE + 1])
+{
+	size_t i = l->position;
+	char *end;
+	char *start;
+	char *start_new;
+	/* size_t tmp = l->position; */
+	while (i--)
+	{
+		ft_putstr(tgetstr("le", NULL));
+		ft_putstr(tgetstr("dc", NULL));
+	}
+	end = ft_strdup(l->buffer + l->position);
+	start = ft_strsub(l->buffer, 0, l->position);
+	start_new = ft_strjoinfree(start, buf);
+	l->buffer = ft_strjoinfree(start_new, end);
+	l->end = ft_strlen(l->buffer);
+	ft_putstr(l->buffer);
+	i = ft_strlen(l->buffer) - (l->position + 1);
+	++l->position;
+	while (i--)
+		ft_putstr(tgetstr("le", NULL));
+}
+
 
 
 // if potential leaks probably here
@@ -199,25 +223,7 @@ static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c, t_line_sta
 		{
 			buf[ret] = '\0';
 			if (l->buffer[l->position])
-			{
-				size_t i = l->position;
-				/* size_t tmp = l->position; */
-				while (i--)
-				{
-					ft_putstr(tgetstr("le", NULL));
-					ft_putstr(tgetstr("dc", NULL));
-				}
-				char *end = ft_strdup(l->buffer + l->position);
-				char *start = ft_strsub(l->buffer, 0, l->position);
-				char *start_new = ft_strjoinfree(start, buf);
-				l->buffer = ft_strjoinfree(start_new, end);
-				l->end = ft_strlen(l->buffer);
-				ft_putstr(l->buffer);
-				i = ft_strlen(l->buffer) - (l->position + 1);
-				++l->position;
-				while (i--)
-					ft_putstr(tgetstr("le", NULL));
-			}
+				edit_buffer(l, buf);
 			else
 			{
 				l->buffer = ft_strjoinfree(l->buffer, buf);
@@ -227,16 +233,6 @@ static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c, t_line_sta
 				ft_putstr(buf);
 			}
 		}
-		// ===> line level
-		/* int buf_len = (int)ft_strlen(l->buffer); */
-		/* // int width = l->term_width = l->term_width * l->level_count; */
-		/* if (l->level_count == 1) */
-		/* 	buf_len += 6; */
-		/* if (buf_len == l->term_width * l->level_count) */
-		/* { */
-		/* 	++l->level_count; */
-		/* 	ft_putnbr(l->level_count); */
-		/* } */
 	}
 	ft_putendl("");
 	*line = ft_strdup(l->buffer);
