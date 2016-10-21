@@ -175,6 +175,37 @@ void			edit_buffer(t_line *l, char	buf[BUFF_SIZE + 1])
 		ft_putstr(tgetstr("le", NULL));
 }
 
+void			display_buffer(t_line *l, char	buf[BUFF_SIZE + 1])
+{
+	l->buffer = ft_strjoinfree(l->buffer, buf);
+	++l->size;
+	++l->position;
+	++l->end;
+	ft_putstr(buf);
+}
+
+void			handle_special_keys(t_line *l, t_hcontrol *c)
+{
+	if (l->key == K_UP)
+		backward_history(l, c);
+	else if (l->key == K_DOWN)
+		foreward_history(l, c);
+	else if (l->key == K_LEFT && l->position > 0)
+		move_left(l);
+	else if (l->key == K_RIGHT && l->buffer[l->position])
+		move_right(l);
+	else if (l->key == K_ALT_L && l->position > 0)
+		move_word_left(l);
+	else if (l->key == K_ALT_R && l->buffer[l->position])
+		move_word_right(l);
+	else if (l->key == K_BKSPC && l->position > 0)
+		erase_back(l);
+	else if (l->key == K_HOME)
+		go_home_of_line(l);
+	else if (l->key == K_END)
+		go_end_of_line(l);
+}
+
 
 
 // if potential leaks probably here
@@ -200,24 +231,8 @@ static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c, t_line_sta
 			// handle special key with termcap
 			if (l->key == K_ENT)
 				is_running = 0;
-			else if (l->key == K_UP)
-				backward_history(l, c);
-			else if (l->key == K_DOWN)
-				foreward_history(l, c);
-			else if (l->key == K_LEFT && l->position > 0)
-				move_left(l);
-			else if (l->key == K_RIGHT && l->buffer[l->position])
-				move_right(l);
-			else if (l->key == K_ALT_L && l->position > 0)
-				move_word_left(l);
-			else if (l->key == K_ALT_R && l->buffer[l->position])
-				move_word_right(l);
-			else if (l->key == K_BKSPC && l->position > 0)
-				erase_back(l);
-			else if (l->key == K_HOME)
-				go_home_of_line(l);
-			else if (l->key == K_END)
-				go_end_of_line(l);
+			else
+				handle_special_keys(l, c);
 		}
 		else
 		{
@@ -225,13 +240,7 @@ static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c, t_line_sta
 			if (l->buffer[l->position])
 				edit_buffer(l, buf);
 			else
-			{
-				l->buffer = ft_strjoinfree(l->buffer, buf);
-				++l->size;
-				++l->position;
-				++l->end;
-				ft_putstr(buf);
-			}
+				display_buffer(l, buf);
 		}
 	}
 	ft_putendl("");
