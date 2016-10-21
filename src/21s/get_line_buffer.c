@@ -10,6 +10,149 @@ static int		is_special_key(unsigned int key)
 	return 0;
 }
 
+void			move_left(t_line *l)
+{
+	--l->end;
+	--l->position;
+	ft_putstr(tgetstr("le", NULL));
+}
+
+void			move_right(t_line *l)
+{
+	++l->end;
+	++l->position;
+	ft_putstr(tgetstr("nd", NULL));
+}
+
+void			move_word_left(t_line *l)
+{
+	ft_putstr(tgetstr("le", NULL));
+	--l->position;
+	while (l->buffer[l->position] == ' ' && l->position > 0)
+	{
+		ft_putstr(tgetstr("le", NULL));
+		--l->position;
+	}
+	while(l->buffer[l->position] != ' ' && l->position > 0)
+	{
+		ft_putstr(tgetstr("le", NULL));
+		--l->position;
+	}
+	if (l->position > 1)
+	{
+		ft_putstr(tgetstr("nd", NULL));
+		++l->position;
+	}
+}
+
+void			move_word_right(t_line *l)
+{
+	if (l->buffer[l->position] == ' ')
+	{
+		while (l->buffer[l->position] == ' ' && l->buffer[l->position])
+		{
+			++l->position;
+			ft_putstr(tgetstr("nd", NULL));
+		}
+	}
+	else
+	{
+		while (l->buffer[l->position] != ' ' && l->buffer[l->position] != '\0')
+		{
+			++l->position;
+			ft_putstr(tgetstr("nd", NULL));
+		}
+		if (l->buffer[l->position] == ' ')
+		{
+			while (l->buffer[l->position] == ' ' && l->buffer[l->position])
+			{
+				++l->position;
+				ft_putstr(tgetstr("nd", NULL));
+			}
+		}
+	}
+}
+
+void			erase_back(t_line *l)
+{
+	// remove end?
+	char *tmpos = l->buffer + (l->position);
+	--l->end;
+	--l->position;
+	ft_putstr(tgetstr("le", NULL));
+	ft_putstr(tgetstr("dc", NULL));
+	if (ft_strlen(l->buffer) == l->position + 1)
+	{
+		char *tmp = l->buffer;
+		l->buffer = ft_strsub(l->buffer, 0, l->position);
+		free(tmp);
+	}
+	else
+	{
+		char *end = ft_strdup(tmpos);
+		char *start  = ft_strsub(l->buffer, 0, l->position);
+		l->buffer = ft_strjoinfree(start, end);
+	}
+}
+
+void			go_home_of_line(t_line *l)
+{
+	while (l->position > 0)
+	{
+		--l->position;
+		ft_putstr(tgetstr("le", NULL));
+	}
+}
+
+void			go_end_of_line(t_line *l)
+{
+	while (l->buffer[l->position])
+	{
+		++l->position;
+		ft_putstr(tgetstr("nd", NULL));
+	}
+}
+
+void			backward_history(t_line *l, t_hcontrol *c)
+{
+	if (c->list)
+	{
+		// free here
+		l->end = ft_strlen(l->buffer);
+		while (l->end--)
+		{
+			ft_putstr(tgetstr("le", NULL));
+			ft_putstr(tgetstr("dc", NULL));
+		}
+		l->buffer = ft_strdup(c->list->line);
+		if (c->list->next)
+			c->list = c->list->next;
+		ft_putstr(l->buffer);
+		l->position = ft_strlen(l->buffer);
+	}
+}
+
+void			foreward_history(t_line *l, t_hcontrol *c)
+{
+	if (c->list)
+	{
+		// free here
+		l->end = ft_strlen(l->buffer);
+		while (l->end--)
+		{
+			ft_putstr(tgetstr("le", NULL));
+			ft_putstr(tgetstr("dc", NULL));
+		}
+		l->buffer = ft_strdup(c->list->line);
+		if (c->list->prev)
+			c->list = c->list->prev;
+		ft_putstr(l->buffer);
+		l->position = ft_strlen(l->buffer);
+	}
+}
+
+
+
 // if potential leaks probably here
 static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c, t_line_stack *stack)
 {
@@ -34,137 +177,23 @@ static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c, t_line_sta
 			if (l->key == K_ENT)
 				is_running = 0;
 			else if (l->key == K_UP)
-			{
-				if (c->list)
-				{
-					// free here
-					l->end = ft_strlen(l->buffer);
-					while (l->end--)
-					{
-						ft_putstr(tgetstr("le", NULL));
-						ft_putstr(tgetstr("dc", NULL));
-					}
-					l->buffer = ft_strdup(c->list->line);
-					if (c->list->next)
-						c->list = c->list->next;
-					ft_putstr(l->buffer);
-					l->position = ft_strlen(l->buffer);
-				}
-			}
+				backward_history(l, c);
 			else if (l->key == K_DOWN)
-			{
-				if (c->list)
-				{
-					// free here
-					l->end = ft_strlen(l->buffer);
-					while (l->end--)
-					{
-						ft_putstr(tgetstr("le", NULL));
-						ft_putstr(tgetstr("dc", NULL));
-					}
-					l->buffer = ft_strdup(c->list->line);
-					if (c->list->prev)
-						c->list = c->list->prev;
-					ft_putstr(l->buffer);
-					l->position = ft_strlen(l->buffer);
-				}
-			}
+				foreward_history(l, c);
 			else if (l->key == K_LEFT && l->position > 0)
-			{
-				--l->end;
-				--l->position;
-				ft_putstr(tgetstr("le", NULL));
-			}
-			else if (l->key == K_ALT_L && l->position > 0)
-			{
-				ft_putstr(tgetstr("le", NULL));
-				--l->position;
-				while (l->buffer[l->position] == ' ' && l->position > 0)
-				{
-					ft_putstr(tgetstr("le", NULL));
-					--l->position;
-				}
-				while(l->buffer[l->position] != ' ' && l->position > 0)
-				{
-					ft_putstr(tgetstr("le", NULL));
-					--l->position;
-				}
-				if (l->position > 1)
-				{
-					ft_putstr(tgetstr("nd", NULL));
-					++l->position;
-				}
-			}
-			else if (l->key == K_ALT_R && l->buffer[l->position])
-			{
-				if (l->buffer[l->position] == ' ')
-				{
-					while (l->buffer[l->position] == ' ' && l->buffer[l->position])
-					{
-						++l->position;
-						ft_putstr(tgetstr("nd", NULL));
-					}
-				}
-				else
-				{
-					while (l->buffer[l->position] != ' ' && l->buffer[l->position] != '\0')
-					{
-						++l->position;
-						ft_putstr(tgetstr("nd", NULL));
-					}
-					if (l->buffer[l->position] == ' ')
-					{
-						while (l->buffer[l->position] == ' ' && l->buffer[l->position])
-						{
-							++l->position;
-							ft_putstr(tgetstr("nd", NULL));
-						}
-					}
-				}
-			}
-			else if (l->key == K_BKSPC && l->position > 0)
-			{
-				// remove end?
-				char *tmpos = l->buffer + (l->position);
-				--l->end;
-				--l->position;
-				ft_putstr(tgetstr("le", NULL));
-				ft_putstr(tgetstr("dc", NULL));
-				if (ft_strlen(l->buffer) == l->position + 1)
-				{
-					char *tmp = l->buffer;
-					l->buffer = ft_strsub(l->buffer, 0, l->position);
-					free(tmp);
-				}
-				else
-				{
-					char *end = ft_strdup(tmpos);
-					char *start  = ft_strsub(l->buffer, 0, l->position);
-					l->buffer = ft_strjoinfree(start, end);
-				}
-			}
+				move_left(l);
 			else if (l->key == K_RIGHT && l->buffer[l->position])
-			{
-				++l->end;
-				++l->position;
-				ft_putstr(tgetstr("nd", NULL));
-			}
+				move_right(l);
+			else if (l->key == K_ALT_L && l->position > 0)
+				move_word_left(l);
+			else if (l->key == K_ALT_R && l->buffer[l->position])
+				move_word_right(l);
+			else if (l->key == K_BKSPC && l->position > 0)
+				erase_back(l);
 			else if (l->key == K_HOME)
-			{
-				while (l->position > 0)
-				{
-					--l->position;
-					ft_putstr(tgetstr("le", NULL));
-				}
-			}
+				go_home_of_line(l);
 			else if (l->key == K_END)
-			{
-				while (l->buffer[l->position])
-				{
-					++l->position;
-					ft_putstr(tgetstr("nd", NULL));
-				}
-			}
+				go_end_of_line(l);
 		}
 		else
 		{
