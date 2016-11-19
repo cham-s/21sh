@@ -93,14 +93,12 @@ void			interpret_command(t_dict **dicts, t_cmd *cmd)
 	char		**env;
 	int			i;
 	t_hcontrol	c;
-	t_line_stack *stack;
 
 	init_history(&c);
-	stack = stack_create();
 	while (1)
 	{
 		display_prompt(dicts[ENV]);
-		if (get_line_buffer(0, &li.line, dicts[ENV], &c, stack) == 0)
+		if (get_line_buffer(0, &li.line, dicts[ENV], &c) == 0)
 			exit(EXIT_FAILURE);
 		env = dict_to_tab(dicts[ENV]); /* transform env dict into tab */
 		li.big_line = ft_strsplit(li.line, ';');

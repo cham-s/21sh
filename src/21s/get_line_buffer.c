@@ -113,43 +113,62 @@ void			go_end_of_line(t_line *l)
 	}
 }
 
-void			backward_history(t_line *l, t_hcontrol *c)
-{
-	if (c->list)
-	{
-		// free here
-		l->end = ft_strlen(l->buffer);
-		while (l->end--)
-		{
-			ft_putstr(tgetstr("le", NULL));
-			ft_putstr(tgetstr("dc", NULL));
-		}
-		l->buffer = ft_strdup(c->list->line);
-		if (c->list->next)
-			c->list = c->list->next;
-		ft_putstr(l->buffer);
-		l->position = ft_strlen(l->buffer);
-	}
-}
+/* void			backward_history(t_line *l, t_hcontrol *c) */
+/* { */
+/* 	if (c->list) */
+/* 	{ */
+/* 		// free here */
+/* 		l->end = ft_strlen(l->buffer); */
+/* 		while (l->end--) */
+/* 		{ */
+/* 			ft_putstr(tgetstr("le", NULL)); */
+/* 			ft_putstr(tgetstr("dc", NULL)); */
+/* 		} */
+/* 		l->buffer = ft_strdup(c->list->line); */
+/* 		if (c->list->next) */
+/* 			c->list = c->list->next; */
+/* 		ft_putstr(l->buffer); */
+/* 		l->position = ft_strlen(l->buffer); */
+/* 	} */
+/* } */
 
 void			foreward_history(t_line *l, t_hcontrol *c)
 {
+	(void)l;
 	if (c->list)
 	{
-		// free here
-		l->end = ft_strlen(l->buffer);
-		while (l->end--)
-		{
-			ft_putstr(tgetstr("le", NULL));
-			ft_putstr(tgetstr("dc", NULL));
-		}
-		l->buffer = ft_strdup(c->list->line);
-		if (c->list->prev)
-			c->list = c->list->prev;
-		ft_putstr(l->buffer);
-		l->position = ft_strlen(l->buffer);
+		ft_putendl(c->list->line);
+		c->list = c->list->prev;
 	}
 }
+void			backward_history(t_line *l, t_hcontrol *c)
+{
+	(void)l;
+	if (c->list)
+	{
+		ft_putendl(c->list->line);
+		c->list = c->list->next;
+	}
+}
+
+/* void			foreward_history(t_line *l, t_hcontrol *c) */
+/* { */
+/* 	if (c->list) */
+/* 	{ */
+/* 		// free here */
+/* 		l->end = ft_strlen(l->buffer); */
+/* 		while (l->end--) */
+/* 		{ */
+/* 			ft_putstr(tgetstr("le", NULL)); */
+/* 			ft_putstr(tgetstr("dc", NULL)); */
+/* 		} */
+/* 		l->buffer = ft_strdup(c->list->line); */
+/* 		if (c->list->prev) */
+/* 			c->list = c->list->prev; */
+/* 		ft_putstr(l->buffer); */
+/* 		l->position = ft_strlen(l->buffer); */
+/* 	} */
+/* } */
 
 void			edit_buffer(t_line *l, char	buf[BUFF_SIZE + 1])
 {
@@ -209,7 +228,7 @@ void			handle_special_keys(t_line *l, t_hcontrol *c)
 
 
 // if potential leaks probably here
-static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c, t_line_stack *stack)
+static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c)
 {
 	int				ret;
 	char			buf[BUFF_SIZE + 1];
@@ -245,10 +264,8 @@ static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c, t_line_sta
 	}
 	ft_putendl("");
 	*line = ft_strdup(l->buffer);
-	add_history(c, new_history(l->buffer));
-	push_stack(stack, l->buffer);
-	ft_putendl(stack->array[stack->index]);
-	stack->index++;
+	if (l->buffer[0])
+		add_history(c, new_history(l->buffer));
 	// reset history
 	c->list = c->head;
 	l->tmp = l->buffer;
@@ -258,7 +275,7 @@ static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c, t_line_sta
 	return (1);
 }
 
-int				get_line_buffer(int const fd, char **line, t_dict *env, t_hcontrol *c, t_line_stack *stack)
+int				get_line_buffer(int const fd, char **line, t_dict *env, t_hcontrol *c)
 {
 	int				res;
 
@@ -268,7 +285,7 @@ int				get_line_buffer(int const fd, char **line, t_dict *env, t_hcontrol *c, t_
 	{
 		init_term_data(fd);
 		init_raw_mode(&c->old_term);
-		res = getline2(line, fd, env, c, stack);
+		res = getline2(line, fd, env, c);
 		reset_default_mode(&c->old_term);
 		return (res);
 	}

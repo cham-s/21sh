@@ -43,7 +43,6 @@ typedef struct		s_line_info
 	char	**split_line;
 }					t_line_info;
 
-
 typedef struct		s_history
 {
 	char				*line;
@@ -91,7 +90,7 @@ void				clean_malloc(char *line, char **big_line, char **env);
 int					is_alphanumeric(const char *s);
 
 
-int					get_line_buffer(int const fd, char **line, t_dict *env, t_hcontrol *c, t_line_stack *stack);
+int					get_line_buffer(int const fd, char **line, t_dict *env, t_hcontrol *c);
 void				init_history(t_hcontrol *c);
 void				add_history(t_hcontrol *c, t_history *new);
 t_history			*new_history(char *str);
