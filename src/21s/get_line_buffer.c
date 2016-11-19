@@ -134,21 +134,33 @@ void			go_end_of_line(t_line *l)
 
 void			foreward_history(t_line *l, t_hcontrol *c)
 {
+	t_history	*tmp;
+
 	(void)l;
+	tmp = NULL;
 	if (c->list)
 	{
+		tmp = c->list;
 		ft_putendl(c->list->line);
 		c->list = c->list->prev;
 	}
+	if (c->list == NULL)
+		c->list = tmp;
 }
 void			backward_history(t_line *l, t_hcontrol *c)
 {
+	t_history	*tmp;
+
 	(void)l;
+	tmp = NULL;
 	if (c->list)
 	{
+		tmp = c->list;
 		ft_putendl(c->list->line);
 		c->list = c->list->next;
 	}
+	if (c->list == NULL)
+		c->list = tmp;
 }
 
 /* void			foreward_history(t_line *l, t_hcontrol *c) */
