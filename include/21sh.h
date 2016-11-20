@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 21:30:06 by cattouma          #+#    #+#             */
-/*   Updated: 2016/10/01 15:36:04 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/11/20 10:13:50 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct		s_hcontrol
 	t_history		*head;
 	t_history		*list;
 	int				max;
+	short			passage;
 	struct termios	old_term;
 }					t_hcontrol;
 

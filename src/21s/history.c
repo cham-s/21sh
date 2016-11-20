@@ -17,6 +17,7 @@ void	init_history(t_hcontrol *c)
 {
 	c->head = NULL;
 	c->list = NULL;
+	c->passage = 0;
 	c->max = 0;
 }
 

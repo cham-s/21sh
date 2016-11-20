@@ -113,54 +113,70 @@ void			go_end_of_line(t_line *l)
 	}
 }
 
-/* void			backward_history(t_line *l, t_hcontrol *c) */
-/* { */
-/* 	if (c->list) */
-/* 	{ */
-/* 		// free here */
-/* 		l->end = ft_strlen(l->buffer); */
-/* 		while (l->end--) */
-/* 		{ */
-/* 			ft_putstr(tgetstr("le", NULL)); */
-/* 			ft_putstr(tgetstr("dc", NULL)); */
-/* 		} */
-/* 		l->buffer = ft_strdup(c->list->line); */
-/* 		if (c->list->next) */
-/* 			c->list = c->list->next; */
-/* 		ft_putstr(l->buffer); */
-/* 		l->position = ft_strlen(l->buffer); */
-/* 	} */
-/* } */
+/*void			backward_history(t_line *l, t_hcontrol *c)
+{
+	if (c->list)
+	{
+		// free here
+		l->end = ft_strlen(l->buffer);
+		while (l->end--)
+		{
+			ft_putstr(tgetstr("le", NULL));
+			ft_putstr(tgetstr("dc", NULL));
+		}
+		l->buffer = ft_strdup(c->list->line);
+		if (c->list->next)
+			c->list = c->list->next;
+		ft_putstr(l->buffer);
+		l->position = ft_strlen(l->buffer);
+	}
+}*/
 
 void			foreward_history(t_line *l, t_hcontrol *c)
 {
-	t_history	*tmp;
-
-	(void)l;
-	tmp = NULL;
-	if (c->list)
+	if (c->list->prev)
 	{
-		tmp = c->list;
-		ft_putendl(c->list->line);
+		l->end = ft_strlen(l->buffer);
+		while (l->end--)
+		{
+			ft_putstr(tgetstr("le", NULL));
+			ft_putstr(tgetstr("dc", NULL));
+		}
 		c->list = c->list->prev;
+		l->buffer = ft_strdup(c->list->line);
+		ft_putstr(l->buffer);
+		l->position = ft_strlen(l->buffer);
 	}
-	if (c->list == NULL)
-		c->list = tmp;
 }
+
 void			backward_history(t_line *l, t_hcontrol *c)
 {
-	t_history	*tmp;
-
-	(void)l;
-	tmp = NULL;
-	if (c->list)
+	if (c->passage == 0)
 	{
-		tmp = c->list;
-		ft_putendl(c->list->line);
-		c->list = c->list->next;
+		l->end = ft_strlen(l->buffer);
+		while (l->end--)
+		{
+			ft_putstr(tgetstr("le", NULL));
+			ft_putstr(tgetstr("dc", NULL));
+		}
+		++c->passage;
+		l->buffer = ft_strdup(c->list->line);
+		ft_putstr(l->buffer);
+		l->position = ft_strlen(l->buffer);
 	}
-	if (c->list == NULL)
-		c->list = tmp;
+	else if (c->list->next)
+	{
+		l->end = ft_strlen(l->buffer);
+		while (l->end--)
+		{
+			ft_putstr(tgetstr("le", NULL));
+			ft_putstr(tgetstr("dc", NULL));
+		}
+		c->list = c->list->next;
+		l->buffer = ft_strdup(c->list->line);
+		ft_putstr(l->buffer);
+		l->position = ft_strlen(l->buffer);
+	}
 }
 
 /* void			foreward_history(t_line *l, t_hcontrol *c) */
@@ -237,8 +253,6 @@ void			handle_special_keys(t_line *l, t_hcontrol *c)
 		go_end_of_line(l);
 }
 
-
-
 // if potential leaks probably here
 static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c)
 {
@@ -280,6 +294,7 @@ static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c)
 		add_history(c, new_history(l->buffer));
 	// reset history
 	c->list = c->head;
+	c->passage = 0;
 	l->tmp = l->buffer;
 	ft_strdel(&l->tmp);
 	if (ret == 0 && *line[0] == '\0')
