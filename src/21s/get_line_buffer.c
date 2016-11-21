@@ -21,7 +21,10 @@ void			move_right(t_line *l)
 {
 	++l->end;
 	++l->position;
-	//ft_putnbr(l->term_width);
+	ft_putendl("");
+	ft_putnbr(l->term_width);
+	ft_putendl("");
+	ft_putnbr((int)ft_strlen(l->buffer) + 6);
 	if (l->term_width == ((int)ft_strlen(l->buffer) + 6))
 		ft_putstr(tgetstr("do", NULL));
 	else
