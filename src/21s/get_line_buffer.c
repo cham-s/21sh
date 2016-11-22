@@ -17,15 +17,13 @@ void			move_left(t_line *l)
 	ft_putstr(tgetstr("le", NULL));
 }
 
+# define PROMPT_SIZE	6 + 1
+
 void			move_right(t_line *l)
 {
 	++l->end;
 	++l->position;
-	ft_putendl("");
-	ft_putnbr(l->term_width);
-	ft_putendl("");
-	ft_putnbr((int)ft_strlen(l->buffer) + 6);
-	if (l->term_width == ((int)ft_strlen(l->buffer) + 6))
+	if ((int)l->position + PROMPT_SIZE == l->term_width + 1)
 		ft_putstr(tgetstr("do", NULL));
 	else
 		ft_putstr(tgetstr("nd", NULL));
@@ -86,8 +84,13 @@ void			erase_back(t_line *l)
 	char *tmpos = l->buffer + (l->position);
 	--l->end;
 	--l->position;
-	ft_putstr(tgetstr("le", NULL));
-	ft_putstr(tgetstr("dc", NULL));
+	if ((int)l->position + PROMPT_SIZE < l->term_width + 1)
+		ft_putstr(tgetstr("ho", NULL));
+	else
+	{
+		ft_putstr(tgetstr("le", NULL));
+		ft_putstr(tgetstr("dc", NULL));
+	}
 	if (ft_strlen(l->buffer) == l->position + 1)
 	{
 		char *tmp = l->buffer;
