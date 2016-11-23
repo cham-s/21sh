@@ -28,6 +28,7 @@
 # define TOKENS		1
 # define BIN		2
 # define MAX_HISTORY 10
+# define PROMPT_SIZE	6 + 1
 
 typedef struct		s_cmd
 {
@@ -91,9 +92,33 @@ void				clean_malloc(char *line, char **big_line, char **env);
 int					is_alphanumeric(const char *s);
 
 
+/*
+ * line buffer
+ */
+
 int					get_line_buffer(int const fd, char **line, t_dict *env, t_hcontrol *c);
 void				init_history(t_hcontrol *c);
 void				add_history(t_hcontrol *c, t_history *new);
 t_history			*new_history(char *str);
 
+/*
+ * key events
+ */
+
+void				go_home_of_line(t_line *l);
+void				go_end_of_line(t_line *l);
+void				foreward_history(t_line *l, t_hcontrol *c);
+void				backward_history(t_line *l, t_hcontrol *c);
+void				move_word_right(t_line *l);
+void				move_word_left(t_line *l);
+void				move_right(t_line *l);
+void				move_left(t_line *l);
+void				erase_back(t_line *l);
+
+/*
+ * line buffer handling
+ */
+ 
+void			edit_buffer(t_line *l, char	buf[BUFF_SIZE + 1]);
+void			handle_special_keys(t_line *l, t_hcontrol *c);
 #endif

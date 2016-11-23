@@ -40,6 +40,9 @@ OBJS 		= $(OBJDIR)/main.o\
 			  $(OBJDIR)/history.o\
 			  $(OBJDIR)/signal.o\
 			  $(OBJDIR)/line_stack.o\
+			  $(OBJDIR)/events.o\
+			  $(OBJDIR)/events2.o\
+			  $(OBJDIR)/buffer_line_handling.o\
 
 
 .PHONY: all clean fclean re
