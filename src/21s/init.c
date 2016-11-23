@@ -43,6 +43,7 @@ void	init_line(t_line *l, t_dict *env)
 	l->position = 0;
 	l->level = 1;
 	l->level_count = 1;
+	l->level_bucket = 0;
 }
 
 int		init_binaries(t_dict **binaries)

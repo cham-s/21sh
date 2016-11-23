@@ -19,6 +19,37 @@ void			display_buffer(t_line *l, char	buf[BUFF_SIZE + 1])
 	ft_putstr(buf);
 }
 
+void		update_line_level(t_line *l, int BACK)
+{
+	// 5 for 21sh> 
+	int subtract = (l->level_count == 1) ? 5 : 0;
+	if (BACK)
+	{
+		if(!l->level_bucket)
+			return ;
+		--l->level_bucket;
+		if(!l->level_bucket)
+			--l->level_count;
+	}
+	else
+	{
+		++l->level_bucket;
+		if (l->level_bucket == l->term_width - subtract)
+		{
+			l->level_bucket = 0;
+			++l->level_count;
+		}
+	}
+}
+
+/* void	move_line_below(t_line *l) */
+/* { */
+/* 	if ((int)len) */
+/* 	{ */
+/* 		ft_putstr(tgetstr("ho", NULL)); */
+/* 	} */
+/* } */
+
 // if potential leaks probably here
 static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c)
 {
@@ -37,11 +68,15 @@ static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c)
 		if ((ret = read(fd, buf, MAX_KEY_LENGTH)) < 0)
 			return (-1);
 		l->key = *(unsigned int *)buf;
+		update_line_level(l, FALSE);
 		if (is_special_key(l->key))
 		{
 			// handle special key with termcap
 			if (l->key == K_ENT)
+			{
+				l->level_count = 1;
 				is_running = 0;
+			}
 			else
 				handle_special_keys(l, c);
 		}

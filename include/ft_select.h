@@ -83,6 +83,7 @@ typedef struct		s_line
 	int				term_width;
 	int				level;
 	int				level_count;
+	int				level_bucket;
 	struct termios	old_term;
 }					t_line;
 

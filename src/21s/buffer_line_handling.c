@@ -45,4 +45,6 @@ void			handle_special_keys(t_line *l, t_hcontrol *c)
 		go_home_of_line(l);
 	else if (l->key == K_END)
 		go_end_of_line(l);
+	else if (l->key == K_ALT_DOWN)
+		go_end_of_line(l);
 }

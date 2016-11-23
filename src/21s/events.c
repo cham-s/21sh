@@ -11,6 +11,7 @@ void			move_right(t_line *l)
 {
 	++l->end;
 	++l->position;
+	ft_putnbr(l->level_count);
 	if ((int)l->position + PROMPT_SIZE == l->term_width + 1)
 		ft_putstr(tgetstr("do", NULL));
 	else
@@ -94,4 +95,5 @@ void			erase_back(t_line *l)
 		char *start  = ft_strsub(l->buffer, 0, l->position);
 		l->buffer = ft_strjoinfree(start, end);
 	}
+	update_line_level(l, TRUE);
 }
