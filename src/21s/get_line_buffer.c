@@ -37,9 +37,13 @@ void		update_line_level(t_line *l, int back)
 		++l->level_bucket;
 		if (l->level_bucket == l->term_width - subtract)
 		{
-			l->level = (double)ft_strlen(l->buffer) / (double)l->term_width;
+			l->level = (ft_strlen(l->buffer) + 0.0) / (l->term_width + 0.0);
+			int level = ft_strlen(l->buffer) / l->term_width;
+			if ((double)level < l->level)
+				l->level_count = level + 1;
+			else
+				l->level_count = level;
 			l->level_bucket = 0;
-			++l->level_count;
 		}
 	/* } */
 }
