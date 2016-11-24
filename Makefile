@@ -6,7 +6,7 @@
 #    By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/02 16:30:48 by cattouma          #+#    #+#              #
-#    Updated: 2016/09/28 11:53:28 by cattouma         ###   ########.fr        #
+#    Updated: 2016/11/24 14:43:44 by cattouma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,11 +43,12 @@ OBJS 		= $(OBJDIR)/main.o\
 			  $(OBJDIR)/events.o\
 			  $(OBJDIR)/events2.o\
 			  $(OBJDIR)/buffer_line_handling.o\
+			  $(OBJDIR)/debug.o\
 
 
 .PHONY: all clean fclean re
 
-VPATH = src/21s:src/cd:src/dict:src/echo:src/term:src/select
+VPATH = src/21s:src/cd:src/dict:src/echo:src/term:src/select:src/debug
 
 all: $(NAME)
 

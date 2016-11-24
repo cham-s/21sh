@@ -5,7 +5,7 @@ static int		is_special_key(unsigned int key)
 	if (key == K_UP || key == K_DOWN || key == K_LEFT || key == K_RIGHT ||
 		key == K_ESC || key == K_ENT || key == K_DEL || key == K_BKSPC ||
 		key == K_TAB || key == K_ALT_L || key == K_ALT_R || key == K_HOME ||
-	   	key == K_END || key == K_ALT_DOWN || key == K_ALT_UP)
+	   	key == K_END || key == K_ALT_DOWN || key == K_ALT_UP || key == K_PAD_1)
 		return 1;
 	return 0;
 }
@@ -19,27 +19,29 @@ void			display_buffer(t_line *l, char	buf[BUFF_SIZE + 1])
 	ft_putstr(buf);
 }
 
-void		update_line_level(t_line *l, int BACK)
+void		update_line_level(t_line *l, int back)
 {
-	// 5 for 21sh> 
-	int subtract = (l->level_count == 1) ? 5 : 0;
-	if (BACK)
-	{
-		if(!l->level_bucket)
-			return ;
-		--l->level_bucket;
-		if(!l->level_bucket)
-			--l->level_count;
-	}
-	else
-	{
+	// 5 for 21sh>
+	(void)back;
+	int subtract = (l->level_count == 1) ? 6 : 0;
+	/* if (BACK) */
+	/* { */
+	/* 	if(!l->level_bucket) */
+	/* 		return ; */
+	/* 	--l->level_bucket; */
+	/* 	if(!l->level_bucket) */
+	/* 		--l->level_count; */
+	/* } */
+	/* else */
+	/* { */
 		++l->level_bucket;
 		if (l->level_bucket == l->term_width - subtract)
 		{
+			l->level = (double)ft_strlen(l->buffer) / (double)l->term_width;
 			l->level_bucket = 0;
 			++l->level_count;
 		}
-	}
+	/* } */
 }
 
 /* void	move_line_below(t_line *l) */
@@ -68,7 +70,7 @@ static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c)
 		if ((ret = read(fd, buf, MAX_KEY_LENGTH)) < 0)
 			return (-1);
 		l->key = *(unsigned int *)buf;
-		update_line_level(l, FALSE);
+		//ft_putnbr(l->key);
 		if (is_special_key(l->key))
 		{
 			// handle special key with termcap
@@ -87,6 +89,7 @@ static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c)
 				edit_buffer(l, buf);
 			else
 				display_buffer(l, buf);
+			update_line_level(l, FALSE);
 		}
 	}
 	ft_putendl("");

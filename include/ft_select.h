@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:39 by cattouma          #+#    #+#             */
-/*   Updated: 2016/10/03 21:51:24 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/11/24 16:16:43 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@
 # define K_DEL		2117294875
 # define K_BKSPC	127
 # define K_SPACE	32
+# define K_PAD_1	2117425947	
 # define K_A		'a'
 # define K_R		'r'
 # define K_D		'd'
@@ -81,7 +82,7 @@ typedef struct		s_line
 	unsigned int	key;
 	int				term_height;
 	int				term_width;
-	int				level;
+	double			level;
 	int				level_count;
 	int				level_bucket;
 	struct termios	old_term;

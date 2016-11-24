@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/09 21:30:06 by cattouma          #+#    #+#             */
-/*   Updated: 2016/11/20 10:13:50 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/11/24 14:40:53 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,4 +124,11 @@ void				edit_buffer(t_line *l, char	buf[BUFF_SIZE + 1]);
 void				handle_special_keys(t_line *l, t_hcontrol *c);
 
 void				update_line_level(t_line *l, int BACK);
+
+/*
+ * debug 
+ */
+
+void 				display_debug_info(t_line *l);
+
 #endif
