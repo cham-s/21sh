@@ -21,31 +21,18 @@ void			display_buffer(t_line *l, char	buf[BUFF_SIZE + 1])
 
 void		update_line_level(t_line *l, int back)
 {
-	// 5 for 21sh>
 	(void)back;
-	int subtract = (l->level_count == 1) ? 6 : 0;
-	/* if (BACK) */
-	/* { */
-	/* 	if(!l->level_bucket) */
-	/* 		return ; */
-	/* 	--l->level_bucket; */
-	/* 	if(!l->level_bucket) */
-	/* 		--l->level_count; */
-	/* } */
-	/* else */
-	/* { */
-		++l->level_bucket;
-		if (l->level_bucket == l->term_width - subtract)
-		{
-			l->level = (ft_strlen(l->buffer) + 0.0) / (l->term_width + 0.0);
-			int level = ft_strlen(l->buffer) / l->term_width;
-			if ((double)level < l->level)
-				l->level_count = level + 1;
-			else
-				l->level_count = level;
-			l->level_bucket = 0;
-		}
-	/* } */
+	double	result = (double)ft_strlen(l->buffer) / (double)l->term_width;
+	int		trunc = ft_strlen(l->buffer) / l->term_width;
+	if (result < 0)
+	{
+		l->level_count = 1;
+		return ;
+	}
+	if ((double)trunc == result)
+		l->level_count = trunc; 
+	else
+		l->level_count = trunc + 1;  /* It means there is part of the next level */
 }
 
 /* void	move_line_below(t_line *l) */
