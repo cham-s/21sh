@@ -5,7 +5,7 @@ static int		is_special_key(unsigned int key)
 	if (key == K_UP || key == K_DOWN || key == K_LEFT || key == K_RIGHT ||
 		key == K_ESC || key == K_ENT || key == K_DEL || key == K_BKSPC ||
 		key == K_TAB || key == K_ALT_L || key == K_ALT_R || key == K_HOME ||
-	   	key == K_END || key == K_ALT_DOWN || key == K_ALT_UP || key == K_PAD_1)
+	   	key == K_END || key == K_ALT_DOWN || key == K_ALT_UP || key == K_SPE_UP || key == K_SPE_DOWN)
 		return 1;
 	return 0;
 }
@@ -40,13 +40,15 @@ void		update_line_level(t_line *l, int back)
 		l->level_count = trunc; 
 }
 
-/* void	move_line_below(t_line *l) */
-/* { */
-/* 	if ((int)len) */
-/* 	{ */
-/* 		ft_putstr(tgetstr("ho", NULL)); */
-/* 	} */
-/* } */
+void		move_cursor_down(t_line *l)
+{
+	int i =  l->term_width + 6;
+	while (i--)
+	{
+		++l->position;
+		ft_putstr(tgetstr("nd", NULL));
+	}
+}
 
 // if potential leaks probably here
 static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c)

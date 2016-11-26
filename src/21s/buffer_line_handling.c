@@ -47,6 +47,8 @@ void			handle_special_keys(t_line *l, t_hcontrol *c)
 		go_end_of_line(l);
 	else if (l->key == K_ALT_DOWN)
 		go_end_of_line(l);
-	else if (l->key == K_PAD_1)
+	else if (l->key == K_SPE_UP)
 		display_debug_info(l);
+	else if (l->key == K_SPE_DOWN)
+		move_cursor_down(l);
 }
