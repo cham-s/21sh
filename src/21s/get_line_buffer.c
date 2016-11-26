@@ -22,17 +22,22 @@ void			display_buffer(t_line *l, char	buf[BUFF_SIZE + 1])
 void		update_line_level(t_line *l, int back)
 {
 	(void)back;
-	double	result = (double)ft_strlen(l->buffer) / (double)l->term_width;
-	int		trunc = ft_strlen(l->buffer) / l->term_width;
-	if (result < 0)
+	double	result;
+	int		trunc;
+	size_t	size;
+
+	size = ft_strlen(l->buffer);
+	if (((int)size + 6) < l->term_width)
 	{
 		l->level_count = 1;
 		return ;
 	}
-	if ((double)trunc == result)
-		l->level_count = trunc; 
-	else
+	result = ((double)size + 6) / (double)l->term_width;
+	trunc = (size + 6) / l->term_width;
+	if ((double)trunc < result)
 		l->level_count = trunc + 1;  /* It means there is part of the next level */
+	else
+		l->level_count = trunc; 
 }
 
 /* void	move_line_below(t_line *l) */
