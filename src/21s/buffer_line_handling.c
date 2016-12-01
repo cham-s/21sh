@@ -28,9 +28,15 @@ void			edit_buffer(t_line *l, char	buf[BUFF_SIZE + 1])
 void			handle_special_keys(t_line *l, t_hcontrol *c)
 {
 	if (l->key == K_UP)
-		backward_history(l, c);
+	{
+		if (c->list)
+			backward_history(l, c);
+	}
 	else if (l->key == K_DOWN)
-		foreward_history(l, c);
+	{
+		if (c->list)
+			foreward_history(l, c);
+	}
 	else if (l->key == K_LEFT && l->position > 0)
 		move_left(l);
 	else if (l->key == K_RIGHT && l->buffer[l->position])
