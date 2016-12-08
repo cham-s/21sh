@@ -10,6 +10,35 @@ static int		is_special_key(unsigned int key)
 	return 0;
 }
 
+void		print_buffer_with_newline(t_line *l)
+{
+	int i;
+	int level;
+	int width;
+
+	i = 0;
+	level = 0;
+	if (level == 0)
+		width = l->term_width - 6;
+	else
+		width = l->term_width;	
+
+	while (l->buffer[i])
+	{
+		ft_putchar(l->buffer[i]);
+		if (i == (width - 7))
+		{
+			++level;
+			ft_putchar('\n');
+		}
+		if (i == (width - 1))
+		{
+			++level;
+		}
+		i++;
+	}
+}
+
 void			display_buffer(t_line *l, char	buf[BUFF_SIZE + 1])
 {
 	l->buffer = ft_strjoinfree(l->buffer, buf);
@@ -17,6 +46,25 @@ void			display_buffer(t_line *l, char	buf[BUFF_SIZE + 1])
 	++l->position;
 	++l->end;
 	ft_putstr(buf);
+	if (l->level_count == 1)
+	{
+		if(l->level_bucket == (l->term_width - PROMPT_SIZE - 1))
+		{
+			ft_putchar('\n');
+			l->level_bucket = 0;
+			++l->level_count;
+		}
+	}
+	else
+	{
+		if(l->level_bucket == (l->term_width))
+		{
+			ft_putchar('\n');
+			l->level_bucket = 0;
+			++l->level_count;
+		}
+	}
+	++l->level_bucket;
 }
 
 void		update_line_level(t_line *l, int back)
@@ -87,7 +135,6 @@ static int		getline2(char **line, int fd, t_dict *env, t_hcontrol *c)
 				edit_buffer(l, buf);
 			else
 				display_buffer(l, buf);
-			update_line_level(l, FALSE);
 		}
 	}
 	ft_putendl("");

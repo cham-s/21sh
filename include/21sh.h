@@ -28,7 +28,7 @@
 # define TOKENS		1
 # define BIN		2
 # define MAX_HISTORY 10
-# define PROMPT_SIZE	(size_t)6 + 1
+# define PROMPT_SIZE	(size_t)6
 
 
 typedef struct		s_cmd

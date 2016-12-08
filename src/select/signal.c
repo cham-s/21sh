@@ -57,7 +57,6 @@ void			sig_handler(int sig)
 		}
 		l->term_height = w.ws_row;
 		l->term_width = w.ws_col;
-		update_line_level(l, FALSE);
 	}
 	// fix double output when usiing cat.
 	else if (sig == SIGINT)
