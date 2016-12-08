@@ -72,6 +72,14 @@ void			erase_back(t_line *l)
 	char *tmpos = l->buffer + (l->position);
 	--l->end;
 	--l->position;
+	--l->level_bucket;
+	if (l->level_bucket < 0)
+		l->position = 0;
+	if (l->level_bucket == 0 && l->level_count > 1)
+	{
+		ft_putstr(tgetstr("up", NULL));
+		ft_putstr
+	}
 	if ((int)l->position + PROMPT_SIZE == l->term_width + 1)
 	{
 		ft_putstr(tgetstr("le", NULL));
@@ -94,5 +102,4 @@ void			erase_back(t_line *l)
 		char *start  = ft_strsub(l->buffer, 0, l->position);
 		l->buffer = ft_strjoinfree(start, end);
 	}
-	update_line_level(l, TRUE);
 }

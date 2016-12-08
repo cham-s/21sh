@@ -57,7 +57,7 @@ void			display_buffer(t_line *l, char	buf[BUFF_SIZE + 1])
 	}
 	else
 	{
-		if(l->level_bucket == (l->term_width))
+		if (l->level_bucket == (l->term_width))
 		{
 			ft_putchar('\n');
 			l->level_bucket = 0;
