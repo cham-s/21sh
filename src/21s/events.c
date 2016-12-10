@@ -74,17 +74,27 @@ void			erase_back(t_line *l)
 	--l->position;
 	--l->level_bucket;
 	if (l->level_bucket < 0)
-		l->position = 0;
+		l->level_bucket = 0;
 	if (l->level_bucket == 0 && l->level_count > 1)
 	{
 		ft_putstr(tgetstr("up", NULL));
-		ft_putstr
-	}
-	if ((int)l->position + PROMPT_SIZE == l->term_width + 1)
-	{
+		int i = 0;
+		while (i < l->term_width)
+		{
+			ft_putstr(tgetstr("nd", NULL));
+			i++;
+		}
 		ft_putstr(tgetstr("le", NULL));
 		ft_putstr(tgetstr("dc", NULL));
+		ft_putstr(tgetstr("nd", NULL));
+		--l->level_count;
+
 	}
+	/* if ((int)l->position + PROMPT_SIZE == l->term_width + 1) */
+	/* { */
+	/* 	ft_putstr(tgetstr("le", NULL)); */
+	/* 	ft_putstr(tgetstr("dc", NULL)); */
+	/* } */
 	else
 	{
 		ft_putstr(tgetstr("le", NULL));
