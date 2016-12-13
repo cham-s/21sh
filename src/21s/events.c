@@ -1,9 +1,32 @@
 #include "21sh.h"
 
+void			back_to_the_top(t_line *l)
+{
+	if (l->level_bucket == 0 && l->level_count > 1)
+	{
+		ft_putstr(tgetstr("up", NULL));
+		int i = 0;
+		while (i < l->term_width)
+		{
+			ft_putstr(tgetstr("nd", NULL));
+			i++;
+		}
+		--l->level_count;
+		if (l->level_count > 1)
+		{
+			l->level_bucket = l->term_width - 1;
+			--l->position;
+		}
+		else
+			l->level_bucket = l->term_width - 6 - 1;
+	}
+}
+
 void			move_left(t_line *l)
 {
 	--l->end;
 	--l->position;
+	back_to_the_top(l);
 	ft_putstr(tgetstr("le", NULL));
 }
 

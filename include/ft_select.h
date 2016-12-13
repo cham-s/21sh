@@ -86,6 +86,7 @@ typedef struct		s_line
 	double			level;
 	int				level_count;
 	int				level_bucket;
+	int				pos_bucket;
 	struct termios	old_term;
 }					t_line;
 

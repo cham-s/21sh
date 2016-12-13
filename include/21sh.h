@@ -116,6 +116,7 @@ void				move_right(t_line *l);
 void				move_left(t_line *l);
 void				erase_back(t_line *l);
 void				move_cursor_down(t_line *l);
+void				back_to_the_top(t_line *l);
 
 /*
  * line buffer handling
