@@ -71,23 +71,42 @@ typedef struct		s_file
 	struct s_file	*left;
 }					t_file;
 
+typedef struct 		s_position
+{
+	size_t			start;
+	size_t			end;
+}					t_position;
+
+typedef struct		s_size
+{
+	int				heigt;
+	int				width;
+}					t_size;
+
+typedef				s_level
+{
+	int				current;
+	int				count;
+}					t_level;
+
+typedef				s_term
+{
+	t_size			size;
+	struct termios	old_term;
+}					t_term;
+
 typedef struct		s_line
 {
 	char			*line;
 	char			*buffer;
 	char			*tmp;
-	size_t			position;
-	size_t			start;
-	size_t			end;
-	size_t			size;
-	unsigned int	key;
-	int				term_height;
-	int				term_width;
-	double			level;
-	int				level_count;
-	int				level_bucket;
-	struct termios	old_term;
+	size_t			current_index;
+	t_position		position;
+	t_level			level;
+	void			(*to_str)(const struct line*);
 }					t_line;
+
+typedef
 
 typedef struct		s_entry
 {
