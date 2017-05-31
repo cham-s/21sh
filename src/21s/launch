@@ -1,0 +1,3 @@
+gcc -Wall -Werror -Wextra line.c -I ../../include -I ../../libft/includes ../../libft/*.o && 
+./a.out
+cat log
